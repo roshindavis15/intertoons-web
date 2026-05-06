@@ -7,6 +7,8 @@ import Testimonials from "@/components/Testimonials";
 import CTA from "@/components/CTA";
 import { getHeroData, getServicesData, getProductsData, getTestimonialsData } from "@/lib/airtable";
 
+export const revalidate = 0;
+
 export default function Home() {
   // Fetch data on the server
   const heroDataPromise = getHeroData();
