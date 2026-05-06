@@ -4,13 +4,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Hero({ data = {} }) {
+  const content = data;
+  
+  if (!content['Hero Title']) return null;
+
   const {
-    'Hero Title': title = "We Build Intelligent Digital Solutions That Drive Real Growth",
-    'Hero Description': description = "AI Development, AI Automations, Shopify Experts, E-commerce Development & Mobile App Development — All Under One Roof.",
-    'Hero Subtitle': subtitle = "AI-POWERED. FUTURE-FOCUSED.",
+    'Hero Title': title = "",
+    'Hero Description': description = "",
+    'Hero Subtitle': subtitle = "",
     'Button 1 Text': btn1 = "Explore Services",
     'Button 2 Text': btn2 = "View Our Work"
-  } = data;
+  } = content;
 
   // Split title if it has line breaks or just use it as is
   const displayTitle = title.includes('\n') ? title.split('\n').map((line, i) => <span key={i}>{line}<br/></span>) : title;

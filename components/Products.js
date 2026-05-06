@@ -3,15 +3,15 @@
 import Link from 'next/link';
 
 export default function Products({ data = [] }) {
-  const products = data.length > 0 ? data
-    .filter(item => item['Product Name']) // Filter out empty records
+  const products = data
+    .filter(item => item['Product Name'])
     .map(item => ({
       title: item['Product Name'],
       desc: item['Description'],
       image: '/images/placeholder.png'
-    })) : [
-    { title: 'Travel Agency Portal', desc: 'Complete travel booking...', image: '/images/placeholder.png' }
-  ];
+    }));
+
+  if (products.length === 0) return null;
 
   return (
     <section className="section products">

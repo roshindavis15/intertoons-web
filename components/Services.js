@@ -13,15 +13,15 @@ export default function Services({ data = [] }) {
     return '⚙️';
   };
 
-  const services = data.length > 0 ? data
-    .filter(item => item['Service Name']) // Filter out empty records
+  const services = data
+    .filter(item => item['Service Name']) // Only show what is in Airtable
     .map(item => ({
       title: item['Service Name'],
       desc: item['Description'],
       icon: getIcon(item['Service Name'])
-    })) : [
-    { title: 'AI Development', desc: 'Custom AI solutions, LLM integrations...', icon: '🧠' }
-  ];
+    }));
+
+  if (services.length === 0) return null; // Don't show the section if no data
 
   return (
     <section className="section services">

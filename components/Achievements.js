@@ -12,19 +12,14 @@ export default function Achievements({ data = {} }) {
     return { value: "", label: line, icon: '✨' };
   });
 
-  // Default stats if parsing fails or empty
-  const displayStats = stats.length > 0 ? stats : [
-    { value: '170+', label: 'Stores Launched', icon: '🏪' },
-    { value: '24', label: 'Android Apps', icon: '🤖' }
-  ];
+  const displayStats = stats;
+  const awards = awardsText.split('\n').filter(line => line.trim()).map(line => ({ 
+    name: line, 
+    label: line.split(' ')[0] 
+  }));
+  const displayAwards = awards;
 
-  const awardsLines = awardsText.split('\n').filter(line => line.trim());
-  const awards = awardsLines.map(line => ({ name: line, label: line.split(' ')[0] }));
-
-  const displayAwards = awards.length > 0 ? awards : [
-    { name: 'Clutch Award 2024', label: 'Clutch' },
-    { name: 'Shopify Partner', label: 'Shopify' }
-  ];
+  if (displayStats.length === 0 && displayAwards.length === 0) return null;
 
   return (
     <section className="section achievements">

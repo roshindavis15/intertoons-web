@@ -1,16 +1,16 @@
 'use client';
 
 export default function Testimonials({ data = [] }) {
-  const testimonials = data.length > 0 ? data
-    .filter(item => item['Client Name']) // Filter out empty records
+  const testimonials = data
+    .filter(item => item['Client Name'])
     .map(item => ({
       name: item['Client Name'],
       role: item['Company'],
       text: item['Testimonial Text'],
       rating: item['Rating'] || 5
-    })) : [
-    { name: 'Rohan Mehta', role: 'Founder, StyleMart', text: 'Intertoons transformed our idea...', rating: 5 }
-  ];
+    }));
+
+  if (testimonials.length === 0) return null;
 
   return (
     <section className="section testimonials">
