@@ -3,6 +3,7 @@
 import Link from 'next/link';
 
 export default function Services({ data = [] }) {
+  console.log("Services Data from Airtable:", data);
   // Map icons based on service name if not provided
   const getIcon = (name) => {
     if (!name) return '⚙️';

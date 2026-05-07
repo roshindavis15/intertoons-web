@@ -5,7 +5,14 @@ import Achievements from "@/components/Achievements";
 import Products from "@/components/Products";
 import Testimonials from "@/components/Testimonials";
 import CTA from "@/components/CTA";
-import { getHeroData, getServicesData, getProductsData, getTestimonialsData } from "@/lib/airtable";
+import { 
+  getHeroData, 
+  getServicesData, 
+  getProductsData, 
+  getTestimonialsData,
+  getTechnologiesData,
+  getAchievementsData
+} from "@/lib/airtable";
 
 export const revalidate = 0;
 
@@ -15,6 +22,8 @@ export default function Home() {
   const servicesDataPromise = getServicesData();
   const productsDataPromise = getProductsData();
   const testimonialsDataPromise = getTestimonialsData();
+  const technologiesDataPromise = getTechnologiesData();
+  const achievementsDataPromise = getAchievementsData();
 
   return (
     <HomeContent 
@@ -22,23 +31,34 @@ export default function Home() {
       servicesDataPromise={servicesDataPromise}
       productsDataPromise={productsDataPromise}
       testimonialsDataPromise={testimonialsDataPromise}
+      technologiesDataPromise={technologiesDataPromise}
+      achievementsDataPromise={achievementsDataPromise}
     />
   );
 }
 
 // Separate component to handle the async data (using Suspense or just awaiting)
-async function HomeContent({ heroDataPromise, servicesDataPromise, productsDataPromise, testimonialsDataPromise }) {
+async function HomeContent({ 
+  heroDataPromise, 
+  servicesDataPromise, 
+  productsDataPromise, 
+  testimonialsDataPromise,
+  technologiesDataPromise,
+  achievementsDataPromise
+}) {
   const heroData = await heroDataPromise;
   const servicesData = await servicesDataPromise;
   const productsData = await productsDataPromise;
   const testimonialsData = await testimonialsDataPromise;
+  const technologiesData = await technologiesDataPromise;
+  const achievementsData = await achievementsDataPromise;
 
   return (
     <>
       <Hero data={heroData} />
-      <TechStack />
+      <TechStack data={technologiesData} />
       <Services data={servicesData} />
-      <Achievements data={heroData} />
+      <Achievements data={achievementsData} />
       <Products data={productsData} />
       <Testimonials data={testimonialsData} />
       <CTA />

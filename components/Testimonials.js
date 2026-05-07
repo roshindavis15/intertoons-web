@@ -1,6 +1,7 @@
 'use client';
 
 export default function Testimonials({ data = [] }) {
+  console.log("Testimonials Data from Airtable:", data);
   const testimonials = data
     .filter(item => item['Client Name'])
     .map(item => ({

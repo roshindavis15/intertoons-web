@@ -3,6 +3,7 @@
 import Link from 'next/link';
 
 export default function Products({ data = [] }) {
+  console.log("Products Data from Airtable:", data);
   const products = data
     .filter(item => item['Product Name'])
     .map(item => ({
