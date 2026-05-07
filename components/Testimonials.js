@@ -49,18 +49,21 @@ export default function Testimonials({ data = [] }) {
         .testimonials { background: var(--primary); color: white; }
         .badge-small { color: rgba(255, 255, 255, 0.8); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.1em; margin-bottom: 0.5rem; display: block; }
         .testimonials h2 { color: white; }
-        .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
-        .testimonial-card { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 2.5rem; border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.2); transition: var(--transition); }
-        .testimonial-card:hover { background: rgba(255, 255, 255, 0.15); transform: translateY(-5px); }
-        .rating { color: #FFD700; font-size: 1.2rem; margin-bottom: 1rem; }
-        .testimonial-text { font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem; font-style: italic; color: rgba(255, 255, 255, 0.9); }
-        .testimonial-author { display: flex; align-items: center; gap: 1rem; }
-        .author-avatar { width: 50px; height: 50px; background: rgba(255, 255, 255, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
-        .author-name { font-weight: 700; font-size: 1rem; }
-        .author-role { font-size: 0.85rem; color: rgba(255, 255, 255, 0.7); }
-        .testimonial-dots { display: flex; justify-content: center; gap: 0.5rem; }
-        .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.3); }
-        .dot.active { background: white; width: 24px; border-radius: 4px; }
+        @media (max-width: 1024px) {
+          .testimonials-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+        @media (max-width: 768px) {
+          .testimonials { padding: 4rem 0; }
+          .testimonials-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+          }
+          .testimonial-card { padding: 1.5rem; }
+          .testimonial-text { font-size: 1rem; }
+          .testimonials h2 { font-size: 1.8rem; }
+        }
       `}</style>
     </section>
   );

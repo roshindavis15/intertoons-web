@@ -174,7 +174,24 @@ export default function TechStack({ data = [] }) {
             padding: 2rem 1rem;
           }
           .tech-grid {
-            gap: 2rem;
+            gap: 1.5rem;
+          }
+          .tech-item {
+            padding: 0 0.5rem;
+          }
+          .tech-img-wrapper {
+            height: 40px;
+          }
+        }
+        @media (max-width: 480px) {
+          .tech-label {
+            font-size: 0.65rem;
+          }
+          .tech-grid {
+            gap: 1rem;
+          }
+          .tech-img-wrapper {
+            height: 35px;
           }
         }
       `}</style>

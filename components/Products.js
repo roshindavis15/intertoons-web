@@ -3,38 +3,43 @@
 import Link from 'next/link';
 
 export default function Products({ data = [] }) {
+  console.log("RENDERING PRODUCTS COMPONENT - Data length:", data?.length);
   console.log("Products Data from Airtable:", data);
+  
   const products = data
-    .filter(item => item['Product Name'])
+    .filter(item => item.Title)
     .map(item => ({
-      title: item['Product Name'],
-      desc: item['Description'],
-      image: '/images/placeholder.png'
+      title: item.Title,
+      desc: item.Description,
+      image: item.Image?.[0]?.url || null
     }));
 
   if (products.length === 0) return null;
 
   return (
-    <section className="section products">
+    <section className="products-section">
       <div className="container">
-        <div className="section-header text-center">
-          <span className="badge-small">OUR PRODUCTS</span>
-          <h2>Innovation In Every Solution</h2>
+        <div className="products-header">
+          <div className="header-line"></div>
+          <h2 className="products-subtitle">OUR PRODUCTS</h2>
+          <div className="header-line"></div>
         </div>
         
         <div className="products-grid">
           {products.map((product, index) => (
             <div key={index} className="product-card">
-              <div className="product-image">
-                <div className="placeholder-box">
-                  <span>{product.title} Image</span>
-                </div>
+              <div className="product-image-wrapper">
+                {product.image && (
+                  <img src={product.image} alt={product.title} className="product-img" />
+                )}
               </div>
-              <div className="product-info">
-                <h3>{product.title}</h3>
-                <p>{product.desc}</p>
-                <div className="card-footer">
-                  <span className="arrow-circle">→</span>
+              <div className="product-content">
+                <h3 className="product-title">{product.title}</h3>
+                <p className="product-description">{product.desc}</p>
+                <div className="product-action">
+                  <div className="arrow-circle">
+                    <span className="arrow-icon">→</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -43,19 +48,130 @@ export default function Products({ data = [] }) {
       </div>
 
       <style jsx>{`
-        .products { background: #ffffff; }
-        .badge-small { color: var(--primary); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.1em; margin-bottom: 0.5rem; display: block; }
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
-        .product-card { background: white; border-radius: 20px; border: 1px solid var(--border); overflow: hidden; transition: var(--transition); }
-        .product-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: var(--primary-soft); }
-        .product-image { height: 200px; background: var(--bg-soft); display: flex; align-items: center; justify-content: center; }
-        .placeholder-box { color: var(--text-muted); font-weight: 600; font-size: 0.9rem; }
-        .product-info { padding: 1.5rem; }
-        .product-info h3 { font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 800; }
-        .product-info p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; }
-        .card-footer { margin-top: 1.5rem; display: flex; justify-content: flex-end; }
-        .arrow-circle { display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border: 1px solid var(--border); border-radius: 50%; color: var(--primary); font-size: 0.8rem; transition: var(--transition); }
-        .product-card:hover .arrow-circle { background: var(--primary); color: white; border-color: var(--primary); }
+        .products-section {
+          padding: 5rem 0;
+          background: #ffffff;
+          font-family: 'Inter', sans-serif;
+        }
+        .container {
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 0 2rem;
+        }
+        .products-header {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1.5rem;
+          margin-bottom: 3.5rem;
+        }
+        .header-line {
+          height: 1px;
+          width: 60px;
+          background: linear-gradient(90deg, transparent, #0056D2, transparent);
+        }
+        .products-subtitle {
+          font-size: 0.9rem;
+          font-weight: 800;
+          color: #0c1a3a;
+          letter-spacing: 0.05em;
+          margin: 0;
+          text-transform: uppercase;
+        }
+        .products-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1.5rem;
+        }
+        .product-card {
+          background: #ffffff;
+          border: 1px solid #f0f0f0;
+          border-radius: 12px;
+          overflow: hidden;
+          transition: all 0.3s ease;
+          display: flex;
+          flex-direction: column;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+        }
+        .product-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+          border-color: #0056D2;
+        }
+        .product-image-wrapper {
+          height: 200px;
+          width: 100%;
+          overflow: hidden;
+          background: #f8faff;
+        }
+        .product-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.5s ease;
+        }
+        .product-card:hover .product-img {
+          transform: scale(1.05);
+        }
+        .product-content {
+          padding: 1.5rem;
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
+          position: relative;
+        }
+        .product-title {
+          font-size: 1.15rem;
+          font-weight: 800;
+          color: #111;
+          margin-bottom: 0.75rem;
+          line-height: 1.3;
+        }
+        .product-description {
+          font-size: 0.9rem;
+          color: #666;
+          line-height: 1.6;
+          margin-bottom: 1.5rem;
+          flex-grow: 1;
+        }
+        .product-action {
+          display: flex;
+          justify-content: flex-end;
+          margin-top: auto;
+        }
+        .arrow-circle {
+          width: 32px;
+          height: 32px;
+          border: 1px solid #e0e6f0;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #0056D2;
+          transition: all 0.3s ease;
+        }
+        .product-card:hover .arrow-circle {
+          background: #0056D2;
+          color: white;
+          border-color: #0056D2;
+        }
+        .arrow-icon {
+          font-size: 0.9rem;
+        }
+
+        @media (max-width: 1200px) {
+          .products-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+        @media (max-width: 600px) {
+          .products-grid {
+            grid-template-columns: 1fr;
+          }
+          .product-image-wrapper {
+            height: 220px;
+          }
+        }
       `}</style>
     </section>
   );
