@@ -11,7 +11,8 @@ import {
   getProductsData, 
   getTestimonialsData,
   getTechnologiesData,
-  getAchievementsData
+  getAchievementsData,
+  getAwardsData
 } from "@/lib/airtable";
 
 export const revalidate = 0;
@@ -24,6 +25,7 @@ export default function Home() {
   const testimonialsDataPromise = getTestimonialsData();
   const technologiesDataPromise = getTechnologiesData();
   const achievementsDataPromise = getAchievementsData();
+  const awardsDataPromise = getAwardsData();
 
   return (
     <HomeContent 
@@ -33,6 +35,7 @@ export default function Home() {
       testimonialsDataPromise={testimonialsDataPromise}
       technologiesDataPromise={technologiesDataPromise}
       achievementsDataPromise={achievementsDataPromise}
+      awardsDataPromise={awardsDataPromise}
     />
   );
 }
@@ -44,7 +47,8 @@ async function HomeContent({
   productsDataPromise, 
   testimonialsDataPromise,
   technologiesDataPromise,
-  achievementsDataPromise
+  achievementsDataPromise,
+  awardsDataPromise
 }) {
   const heroData = await heroDataPromise;
   const servicesData = await servicesDataPromise;
@@ -52,13 +56,17 @@ async function HomeContent({
   const testimonialsData = await testimonialsDataPromise;
   const technologiesData = await technologiesDataPromise;
   const achievementsData = await achievementsDataPromise;
+  const awardsData = await awardsDataPromise;
 
   return (
     <>
       <Hero data={heroData} />
       <TechStack data={technologiesData} />
       <Services data={servicesData} />
-      <Achievements data={achievementsData} />
+      <Achievements 
+        achievementsData={achievementsData} 
+        awardsData={awardsData} 
+      />
       <Products data={productsData} />
       <Testimonials data={testimonialsData} />
       <CTA />

@@ -2,133 +2,182 @@
 
 import Image from 'next/image';
 
-export default function Achievements({ data = [] }) {
-  console.log("Achievements Data from Airtable:", data);
+export default function Achievements({ achievementsData = [], awardsData = [] }) {
+  console.log("Achievements Data:", achievementsData);
+  console.log("Awards Data:", awardsData);
 
-  // Filter out empty records and ensure we have valid titles
-  const stats = data
-    .filter(item => item.Title && item.Count)
+  const stats = achievementsData
     .map(item => ({
-      value: item.Count + '+',
+      value: item.Count + (item.Count > 100 ? '+' : ''),
       label: item.Title,
-      icon: item.Icon?.[0]?.url || '📈'
+      icon: item.Icon?.[0]?.url || null
     }));
 
-  if (stats.length === 0) return null;
+  const awards = awardsData
+    .map(item => ({
+      title: item.Title,
+      icon: item.Icon?.[0]?.url || null
+    }));
 
   return (
-    <section className="section achievements">
+    <section className="achievements-section">
       <div className="container">
-        <div className="achievements-card">
-          <div className="sub-title">OUR ACHIEVEMENTS</div>
-          <div className="stats-grid">
-            {stats.map((stat, i) => (
-              <div key={i} className="stat-item">
-                <div className="stat-icon-wrapper">
-                  {stat.icon.startsWith('http') ? (
-                    <Image 
-                      src={stat.icon} 
-                      alt={stat.label} 
-                      width={48} 
-                      height={48} 
-                      style={{ objectFit: 'contain' }}
-                    />
-                  ) : (
-                    <span className="stat-emoji">{stat.icon}</span>
-                  )}
+        <div className="dual-card-wrapper">
+          {/* Achievements Card */}
+          <div className="content-card">
+            <h4 className="card-subtitle">OUR ACHIEVEMENTS</h4>
+            <div className="card-grid achievements-grid">
+              {stats.map((stat, i) => (
+                <div key={i} className="grid-item">
+                  <div className="item-icon">
+                    {stat.icon && (
+                      <img src={stat.icon} alt={stat.label} />
+                    )}
+                  </div>
+                  <div className="item-value">{stat.value}</div>
+                  <div className="item-label">{stat.label}</div>
                 </div>
-                <div className="stat-content">
-                  <div className="stat-value">{stat.value}</div>
-                  <div className="stat-label">{stat.label}</div>
+              ))}
+            </div>
+          </div>
+
+          {/* Awards Card */}
+          <div className="content-card">
+            <h4 className="card-subtitle">AWARDS & RECOGNITIONS</h4>
+            <div className="card-grid awards-grid">
+              {awards.map((award, i) => (
+                <div key={i} className="grid-item award-item">
+                  <div className="award-icon-wrapper">
+                    {award.icon && (
+                      <img src={award.icon} alt={award.title} />
+                    )}
+                  </div>
+                  <div className="item-label award-label">{award.title}</div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
       <style jsx>{`
-        .achievements {
-          background: #fcfcfc;
-          padding: 5rem 0;
+        .achievements-section {
+          padding: 4rem 0;
+          background: #fdfdfd;
+          font-family: 'Inter', sans-serif;
         }
-        .achievements-card {
-          background: white;
-          border-radius: 30px;
-          padding: 3rem;
-          border: 1px solid #f0f0f0;
-          box-shadow: 0 10px 40px rgba(0,0,0,0.02);
+        .container {
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 0 2rem;
         }
-        .sub-title {
-          font-size: 0.85rem;
-          font-weight: 800;
-          color: #0056D2;
-          margin-bottom: 3.5rem;
-          letter-spacing: 0.15em;
+        .dual-card-wrapper {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 2rem;
+        }
+        .content-card {
+          background: #ffffff;
+          border: 1px solid #eef2f8;
+          border-radius: 12px;
+          padding: 2.5rem 1.5rem;
           text-align: center;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+        }
+        .card-subtitle {
+          font-size: 0.8rem;
+          font-weight: 800;
+          color: #0c1a3a;
+          margin-bottom: 2.5rem;
+          letter-spacing: 0.05em;
           text-transform: uppercase;
         }
-        .stats-grid {
+        .card-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-          gap: 3rem;
-          align-items: center;
+          align-items: flex-start;
         }
-        .stat-item {
+        .achievements-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        .awards-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .grid-item {
+          position: relative;
           display: flex;
           flex-direction: column;
           align-items: center;
-          text-align: center;
-          gap: 1.5rem;
-          transition: transform 0.3s ease;
+          padding: 0 1rem;
         }
-        .stat-item:hover {
-          transform: translateY(-5px);
+        .grid-item:not(:last-child)::after {
+          content: "";
+          position: absolute;
+          right: 0;
+          top: 10%;
+          height: 80%;
+          width: 1px;
+          background: #eef2f8;
         }
-        .stat-icon-wrapper {
-          width: 80px;
-          height: 80px;
-          background: #f8faff;
-          border-radius: 20px;
+        .item-icon {
+          height: 40px;
+          margin-bottom: 1.25rem;
           display: flex;
           align-items: center;
           justify-content: center;
-          transition: background 0.3s ease;
         }
-        .stat-item:hover .stat-icon-wrapper {
-          background: #eef4ff;
+        .item-icon img {
+          max-height: 100%;
+          object-fit: contain;
         }
-        .stat-emoji {
-          font-size: 2rem;
+        .item-value {
+          font-size: 1.75rem;
+          font-weight: 800;
+          color: #0056D2;
+          margin-bottom: 0.5rem;
         }
-        .stat-content {
-          display: flex;
-          flex-direction: column;
-          gap: 0.25rem;
-        }
-        .stat-value {
-          font-size: 2.5rem;
-          font-weight: 900;
-          color: #111;
-          line-height: 1;
-        }
-        .stat-label {
-          font-size: 0.9rem;
-          color: #666;
+        .item-label {
+          font-size: 0.85rem;
           font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
+          color: #111;
+          line-height: 1.4;
+        }
+        .award-icon-wrapper {
+          height: 80px;
+          margin-bottom: 1.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+        }
+        .award-icon-wrapper img {
+          max-height: 100%;
+          max-width: 90%;
+          object-fit: contain;
+        }
+        .award-label {
+          font-size: 0.9rem;
+          margin-top: 0.5rem;
         }
 
-        @media (max-width: 768px) {
-          .achievements-card {
-            padding: 2rem;
+        @media (max-width: 1024px) {
+          .dual-card-wrapper {
+            grid-template-columns: 1fr;
           }
-          .stats-grid {
-            gap: 2rem;
+        }
+        @media (max-width: 600px) {
+          .achievements-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem 0;
           }
-          .stat-value {
-            font-size: 2rem;
+          .grid-item:nth-child(2n)::after {
+            display: none;
+          }
+          .awards-grid {
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+          }
+          .award-item::after {
+            display: none;
           }
         }
       `}</style>

@@ -59,15 +59,15 @@ export default function TechStack({ data = [] }) {
 
       <style jsx>{`
         .tech-stack {
-          padding: 4rem 0;
-          background: #fcfcfc;
+          padding: 1rem 0 1rem 0;
+          background: #ffffff;
         }
         .tech-card {
           background: white;
-          border: 1px solid #eaeaea;
-          border-radius: 20px;
-          padding: 2.5rem 2rem;
-          box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+          border: 1px solid #f0f0f0;
+          border-radius: 16px;
+          padding: 1.25rem 2rem;
+          box-shadow: 0 4px 20px rgba(0,0,0,0.01);
           position: relative;
         }
         .tech-label-wrapper {
@@ -75,20 +75,34 @@ export default function TechStack({ data = [] }) {
           align-items: center;
           justify-content: center;
           gap: 1.5rem;
-          margin-bottom: 2.5rem;
+          margin-bottom: 1.5rem;
           position: relative;
         }
         .line {
-          height: 1px;
-          background: linear-gradient(to right, transparent, #0056D2, transparent);
-          flex: 0 1 100px;
-          opacity: 0.3;
+          height: 1.5px;
+          background: #000000;
+          flex: 0 1 80px;
+          opacity: 0.1;
+          position: relative;
         }
+        .line::after {
+          content: '';
+          position: absolute;
+          width: 4px;
+          height: 4px;
+          background: #000000;
+          border-radius: 50%;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+        .tech-label-wrapper span:first-child::after { right: -2px; }
+        .tech-label-wrapper span:last-child::after { left: -2px; }
+
         .tech-label {
-          font-size: 0.8rem;
-          font-weight: 800;
-          color: #0056D2;
-          letter-spacing: 0.15em;
+          font-size: 0.75rem;
+          font-weight: 900;
+          color: #000000;
+          letter-spacing: 0.1em;
           text-transform: uppercase;
           white-space: nowrap;
         }
@@ -111,29 +125,29 @@ export default function TechStack({ data = [] }) {
           align-items: center;
           justify-content: center;
           transition: transform 0.3s ease;
-          padding: 0 2rem;
+          padding: 0 1.5rem;
           flex: 1;
         }
         .tech-item:hover {
-          transform: translateY(-3px);
+          transform: translateY(-2px);
         }
         .tech-img-wrapper {
           position: relative;
-          height: 60px;
+          height: 50px;
           width: 100%;
           display: flex;
           align-items: center;
           justify-content: center;
         }
         .separator {
-          height: 50px;
-          width: 1.5px;
+          height: 35px;
+          width: 1px;
           background: #f0f0f0;
           flex-shrink: 0;
         }
         .tech-logo {
           font-weight: 800;
-          font-size: 1.4rem;
+          font-size: 1.2rem;
           color: #333;
         }
         .shopify { color: #95BF47; }
@@ -141,7 +155,7 @@ export default function TechStack({ data = [] }) {
         .claude { color: #D97757; }
         .google { color: #4285F4; }
         .aws { color: #FF9900; }
-        .sql { color: #CC2927; font-size: 1rem; }
+        .sql { color: #CC2927; font-size: 0.9rem; }
 
         @media (max-width: 1200px) {
           .tech-grid {
