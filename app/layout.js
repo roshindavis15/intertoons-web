@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { getHeaderData } from "@/lib/airtable";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -13,11 +14,13 @@ export const metadata = {
   description: "We Build Intelligent Digital Solutions That Drive Real Growth. AI Development, Automations, Shopify, and more.",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const navItems = await getHeaderData();
+
   return (
     <html lang="en" className={inter.variable}>
       <body>
-        <Header />
+        <Header navItems={navItems} />
         <main>{children}</main>
         <Footer />
       </body>

@@ -59,7 +59,7 @@ export default function TechStack({ data = [] }) {
 
       <style jsx>{`
         .tech-stack {
-          padding: 1rem 0 1rem 0;
+          padding: 0 0 1rem 0;
           background: #ffffff;
         }
         .tech-card {
@@ -100,7 +100,7 @@ export default function TechStack({ data = [] }) {
 
         .tech-label {
           font-size: 0.75rem;
-          font-weight: 900;
+          font-weight: 600;
           color: #000000;
           letter-spacing: 0.1em;
           text-transform: uppercase;

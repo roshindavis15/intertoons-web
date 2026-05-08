@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import './Header.css';
 
-export default function Header() {
+export default function Header({ navItems = [] }) {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -14,18 +14,16 @@ export default function Header() {
     setIsMenuOpen(false);
   }, [pathname]);
 
-  // Prevent scroll when menu is open
+  // Prevent body scroll when mobile menu is open
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
+    document.body.style.overflow = isMenuOpen ? 'hidden' : 'unset';
   }, [isMenuOpen]);
 
   return (
     <header className="header">
       <div className="container header-content">
+
+        {/* Logo */}
         <div className="logo">
           <Link href="/" className="logo-link">
             <div className="logo-it">
@@ -38,31 +36,28 @@ export default function Header() {
             </div>
           </Link>
         </div>
-        
+
         {/* Desktop Nav */}
         <nav className="nav desktop-nav">
           <ul>
-            <li className={pathname === '/' ? 'active' : ''}>
-              <Link href="/">Home</Link>
-            </li>
-            <li><Link href="/services">Services</Link></li>
-            <li><Link href="/industries">Industries</Link></li>
-            <li><Link href="/products">Products</Link></li>
-            <li><Link href="/portfolio">Portfolio</Link></li>
-            <li><Link href="/about">About Us</Link></li>
-            <li><Link href="/blog">Blog</Link></li>
+            {navItems.map((item, i) => (
+              <li key={i} className={pathname === item.slug ? 'active' : ''}>
+                <Link href={item.slug}>{item.title}</Link>
+              </li>
+            ))}
           </ul>
         </nav>
-        
+
+        {/* Desktop CTA */}
         <div className="header-actions desktop-actions">
           <Link href="/contact" className="btn-quote">
             Request a Quote <span className="arrow">→</span>
           </Link>
         </div>
 
-        {/* Mobile Toggle */}
-        <button 
-          className={`mobile-toggle ${isMenuOpen ? 'open' : ''}`} 
+        {/* Hamburger Toggle */}
+        <button
+          className={`mobile-toggle ${isMenuOpen ? 'open' : ''}`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle Menu"
         >
@@ -72,19 +67,15 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile Menu Drawer */}
+      {/* Mobile Drawer */}
       <div className={`mobile-menu ${isMenuOpen ? 'active' : ''}`}>
         <nav className="mobile-nav">
           <ul>
-            <li className={pathname === '/' ? 'active' : ''}>
-              <Link href="/">Home</Link>
-            </li>
-            <li><Link href="/services">Services</Link></li>
-            <li><Link href="/industries">Industries</Link></li>
-            <li><Link href="/products">Products</Link></li>
-            <li><Link href="/portfolio">Portfolio</Link></li>
-            <li><Link href="/about">About Us</Link></li>
-            <li><Link href="/blog">Blog</Link></li>
+            {navItems.map((item, i) => (
+              <li key={i} className={pathname === item.slug ? 'active' : ''}>
+                <Link href={item.slug}>{item.title}</Link>
+              </li>
+            ))}
           </ul>
           <div className="mobile-actions">
             <Link href="/contact" className="btn-quote mobile-btn">

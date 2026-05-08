@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { FaArrowRight } from 'react-icons/fa';
 
 export default function Services({ data = [] }) {
   console.log("RENDERING SERVICES COMPONENT - Data length:", data?.length);
@@ -40,7 +41,7 @@ export default function Services({ data = [] }) {
               <h3 className="service-name">{service.title}</h3>
               <p className="service-description">{service.desc}</p>
               <div className="service-arrow">
-                <span className="arrow-icon">→</span>
+                <FaArrowRight className="arrow-icon" />
               </div>
             </div>
           ))}
@@ -98,7 +99,7 @@ export default function Services({ data = [] }) {
         }
         .services-title {
           font-size: 2.1rem;
-          font-weight: 800;
+          font-weight: 600;
           color: #0c1a3a;
           margin: 0;
         }
@@ -147,32 +148,33 @@ export default function Services({ data = [] }) {
         }
         .service-description {
           font-size: 0.9rem;
-          color: #666;
+          color: #555;
           line-height: 1.6;
           margin-bottom: 2rem;
           flex-grow: 1;
+          font-weight: 600;
         }
         .service-arrow {
           position: absolute;
           bottom: 1.25rem;
           right: 1.25rem;
-          width: 24px;
-          height: 24px;
-          border: 1px solid #d0d7e5;
+          width: 28px;
+          height: 28px;
+          background: #0056D2;
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
-          color: #0056D2;
+          color: white;
           transition: all 0.3s ease;
         }
         .service-card:hover .service-arrow {
-          background: #0056D2;
-          color: white;
-          border-color: #0056D2;
+          background: #0044aa;
+          transform: scale(1.1);
         }
         .arrow-icon {
-          font-size: 0.8rem;
+          font-size: 0.65rem;
+          font-weight: 700;
         }
         .services-footer {
           text-align: center;
