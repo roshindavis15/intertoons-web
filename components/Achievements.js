@@ -3,8 +3,6 @@
 import Image from 'next/image';
 
 export default function Achievements({ achievementsData = [], awardsData = [] }) {
-  console.log("Achievements Data:", achievementsData);
-  console.log("Awards Data:", awardsData);
 
   const stats = achievementsData
     .map(item => ({
@@ -62,7 +60,7 @@ export default function Achievements({ achievementsData = [], awardsData = [] })
 
       <style jsx>{`
         .achievements-section {
-          padding: 4rem 0;
+          padding: 1.5rem 0 4rem 0;
           background: #fdfdfd;
           font-family: 'Inter', sans-serif;
         }
@@ -77,12 +75,12 @@ export default function Achievements({ achievementsData = [], awardsData = [] })
           gap: 2rem;
         }
         .content-card {
-          background: #ffffff;
-          border: 1px solid #eef2f8;
+          background: #f0f5ff;
+          border: 1px solid #e0eaff;
           border-radius: 12px;
           padding: 2.5rem 1.5rem;
           text-align: center;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+          box-shadow: 0 4px 20px rgba(0, 86, 210, 0.04);
         }
         .card-subtitle {
           font-size: 0.8rem;

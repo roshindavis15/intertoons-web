@@ -5,8 +5,6 @@ import Image from 'next/image';
 import { FaArrowRight } from 'react-icons/fa';
 
 export default function Services({ data = [] }) {
-  console.log("RENDERING SERVICES COMPONENT - Data length:", data?.length);
-  console.log("Services Data from Airtable:", data);
   
   const services = data
     .filter(item => item['Service Name'])
@@ -75,7 +73,7 @@ export default function Services({ data = [] }) {
 
       <style jsx>{`
         .services-section {
-          padding: 2.5rem 0 5rem 0;
+          padding: 2.5rem 0 2.5rem 0;
           background: #ffffff;
           font-family: 'Inter', sans-serif;
         }
@@ -160,21 +158,22 @@ export default function Services({ data = [] }) {
           right: 1.25rem;
           width: 28px;
           height: 28px;
-          background: #0056D2;
+          background: transparent;
+          border: 2px solid #0056D2;
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
-          color: white;
+          color: #0056D2;
           transition: all 0.3s ease;
         }
         .service-card:hover .service-arrow {
-          background: #0044aa;
+          background: #0056D2;
+          color: white;
           transform: scale(1.1);
         }
         .arrow-icon {
           font-size: 0.65rem;
-          font-weight: 700;
         }
         .services-footer {
           text-align: center;

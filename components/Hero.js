@@ -5,7 +5,6 @@ import Link from 'next/link';
 import './Hero.css';
 
 export default function Hero({ data = {} }) {
-  console.log("Hero Data from Airtable:", data);
   const content = data;
   
   if (!content['Hero Title']) return null;
@@ -88,10 +87,10 @@ export default function Hero({ data = {} }) {
           <Image 
             src="/images/hero-laptop-new.png" 
             alt="Intelligent Digital Solutions" 
-            width={750} 
-            height={600}
+            width={580} 
+            height={464}
             priority
-            style={{ objectFit: 'contain' }}
+            style={{ objectFit: 'contain', width: '100%', height: 'auto' }}
           />
         </div>
       </div>

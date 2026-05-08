@@ -3,7 +3,6 @@
 import Image from 'next/image';
 
 export default function TechStack({ data = [] }) {
-  console.log("TechStack Data from Airtable:", data);
   const techs = data.length > 0 
     ? data
         .filter(t => t['Technology Name'] || t['Icon/Image'])

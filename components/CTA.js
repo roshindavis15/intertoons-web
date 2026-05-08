@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { FaRocket } from 'react-icons/fa';
 
 export default function CTA() {
   return (
@@ -8,74 +9,99 @@ export default function CTA() {
       <div className="container">
         <div className="cta-banner">
           <div className="cta-content">
-            <div className="cta-icon">🚀</div>
+            <div className="cta-icon">
+              <FaRocket />
+            </div>
             <div className="cta-text">
               <h3>Let's Build Something Amazing Together!</h3>
               <p>Share your idea and we'll turn it into a powerful digital solution.</p>
             </div>
           </div>
-          <Link href="/contact" className="btn btn-white">
-            Request a Quote <span className="arrow">→</span>
+          <Link href="/contact" className="btn-white">
+            Request for a Quote <span className="arrow">→</span>
           </Link>
         </div>
       </div>
 
       <style jsx>{`
         .cta {
-          padding-bottom: 5rem;
-          background: var(--background);
+          padding: 0 0 3rem 0;
+          background: #ffffff;
+        }
+        .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 2rem;
         }
         .cta-banner {
-          background: linear-gradient(90deg, var(--primary) 0%, #3B82F6 100%);
-          padding: 3rem 4rem;
-          border-radius: 30px;
+          background: linear-gradient(90deg, #0044cc 0%, #3B82F6 100%);
+          padding: 1.25rem 2.5rem;
+          border-radius: 16px;
           display: flex;
           align-items: center;
           justify-content: space-between;
-          color: white;
-          box-shadow: var(--shadow-lg);
+          gap: 2rem;
         }
         .cta-content {
           display: flex;
           align-items: center;
-          gap: 2rem;
+          gap: 1.25rem;
         }
         .cta-icon {
-          font-size: 3rem;
+          font-size: 2.8rem;
+          color: #ffffff;
+          display: flex;
+          align-items: center;
+          flex-shrink: 0;
         }
         .cta-text h3 {
-          font-size: 2rem;
-          margin-bottom: 0.5rem;
-          color: white;
+          font-size: 1.2rem;
+          font-weight: 700;
+          color: #ffffff;
+          margin: 0 0 0.2rem 0;
+          white-space: nowrap;
         }
         .cta-text p {
-          color: rgba(255, 255, 255, 0.9);
-          font-size: 1.1rem;
+          color: rgba(255, 255, 255, 0.88);
+          font-size: 0.88rem;
+          margin: 0;
         }
         .btn-white {
-          background: white;
-          color: var(--primary);
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          background: #ffffff;
+          color: #111111;
+          font-weight: 700;
+          font-size: 0.9rem;
+          padding: 0.6rem 1.5rem;
+          border-radius: 8px;
+          border: 2px solid #ffffff;
+          text-decoration: none;
+          white-space: nowrap;
+          flex-shrink: 0;
+          transition: all 0.2s ease;
         }
         .btn-white:hover {
-          background: #f0f0f0;
-          transform: translateY(-2px);
+          background: #f0f4ff;
+          transform: translateY(-1px);
         }
-        .arrow { margin-left: 0.5rem; }
+        .arrow {
+          font-size: 1rem;
+        }
 
-        @media (max-width: 968px) {
+        @media (max-width: 768px) {
           .cta-banner {
             flex-direction: column;
             text-align: center;
-            padding: 3rem 2rem;
-            gap: 2rem;
+            padding: 1.5rem;
+            gap: 1.25rem;
           }
           .cta-content {
             flex-direction: column;
-            gap: 1rem;
+            gap: 0.75rem;
           }
-          .cta-text h3 {
-            font-size: 1.5rem;
-          }
+          .cta-text h3 { white-space: normal; font-size: 1.1rem; }
         }
       `}</style>
     </section>

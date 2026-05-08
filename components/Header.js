@@ -51,7 +51,7 @@ export default function Header({ navItems = [] }) {
         {/* Desktop CTA */}
         <div className="header-actions desktop-actions">
           <Link href="/contact" className="btn-quote">
-            Request a Quote <span className="arrow">→</span>
+            Request for a Quote <span className="arrow">→</span>
           </Link>
         </div>
 
@@ -79,7 +79,7 @@ export default function Header({ navItems = [] }) {
           </ul>
           <div className="mobile-actions">
             <Link href="/contact" className="btn-quote mobile-btn">
-              Request a Quote <span className="arrow">→</span>
+              Request for a Quote <span className="arrow">→</span>
             </Link>
           </div>
         </nav>

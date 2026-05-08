@@ -1,10 +1,9 @@
 'use client';
 
 import Link from 'next/link';
+import { FaArrowRight } from 'react-icons/fa';
 
 export default function Products({ data = [] }) {
-  console.log("RENDERING PRODUCTS COMPONENT - Data length:", data?.length);
-  console.log("Products Data from Airtable:", data);
   
   const products = data
     .filter(item => item.Title)
@@ -38,7 +37,7 @@ export default function Products({ data = [] }) {
                 <p className="product-description">{product.desc}</p>
                 <div className="product-action">
                   <div className="arrow-circle">
-                    <span className="arrow-icon">→</span>
+                    <FaArrowRight className="arrow-icon" />
                   </div>
                 </div>
               </div>
@@ -49,7 +48,7 @@ export default function Products({ data = [] }) {
 
       <style jsx>{`
         .products-section {
-          padding: 5rem 0;
+          padding: 1.5rem 0 5rem 0;
           background: #ffffff;
           font-family: 'Inter', sans-serif;
         }
@@ -140,23 +139,25 @@ export default function Products({ data = [] }) {
           margin-top: auto;
         }
         .arrow-circle {
-          width: 32px;
-          height: 32px;
-          border: 1px solid #e0e6f0;
+          width: 30px;
+          height: 30px;
+          border: 2px solid #0056D2;
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
           color: #0056D2;
+          background: transparent;
           transition: all 0.3s ease;
         }
         .product-card:hover .arrow-circle {
           background: #0056D2;
           color: white;
           border-color: #0056D2;
+          transform: scale(1.1);
         }
         .arrow-icon {
-          font-size: 0.9rem;
+          font-size: 0.65rem;
         }
 
         @media (max-width: 1200px) {
