@@ -14,8 +14,12 @@ export default function Hero({ data = {} }) {
     'Hero Description': description = "",
     'Hero Subtitle': subtitle = "",
     'Button 1 Text': btn1 = "Explore Services",
-    'Button 2 Text': btn2 = "View Our Work"
+    'Button 2 Text': btn2 = "View Our Work",
+    'Hero Banner Image': bannerImage = []
   } = content;
+
+  // Use the first attachment from the Hero Banner Image field if available
+  const heroImageUrl = bannerImage?.[0]?.url || "/images/hero-laptop-new.png";
 
   // Process title to highlight "Real Growth" or the last two words
   const highlightWords = (text) => {
@@ -85,7 +89,7 @@ export default function Hero({ data = {} }) {
         
         <div className="hero-visual">
           <Image 
-            src="/images/hero-laptop-new.png" 
+            src={heroImageUrl} 
             alt="Intelligent Digital Solutions" 
             width={580} 
             height={464}
