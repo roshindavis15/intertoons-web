@@ -58,7 +58,7 @@ export default function TechStack({ data = [] }) {
 
       <style jsx>{`
         .tech-stack {
-          padding: 0 0 1rem 0;
+          padding: 0 0 0 0;
           background: #ffffff;
         }
         .tech-card {
@@ -158,25 +158,31 @@ export default function TechStack({ data = [] }) {
 
         @media (max-width: 1200px) {
           .tech-grid {
-            flex-wrap: wrap;
-            gap: 2rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+          }
+          .tech-item-container {
+            flex: none;
+            width: 100%;
           }
           .separator {
             display: none;
           }
           .tech-item {
-            padding: 0 1rem;
+            padding: 0.5rem 1rem;
           }
         }
         @media (max-width: 768px) {
           .tech-card {
-            padding: 2rem 1rem;
+            padding: 1.5rem 1rem;
           }
           .tech-grid {
-            gap: 1.5rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
           }
           .tech-item {
-            padding: 0 0.5rem;
+            padding: 0.5rem;
           }
           .tech-img-wrapper {
             height: 40px;
@@ -187,10 +193,11 @@ export default function TechStack({ data = [] }) {
             font-size: 0.65rem;
           }
           .tech-grid {
-            gap: 1rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
           }
           .tech-img-wrapper {
-            height: 35px;
+            height: 32px;
           }
         }
       `}</style>

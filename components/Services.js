@@ -73,7 +73,7 @@ export default function Services({ data = [] }) {
 
       <style jsx>{`
         .services-section {
-          padding: 2.5rem 0 2.5rem 0;
+          padding: 1rem 0 2.5rem 0;
           background: #ffffff;
           font-family: 'Inter', sans-serif;
         }
@@ -148,7 +148,7 @@ export default function Services({ data = [] }) {
           font-size: 0.9rem;
           color: #555;
           line-height: 1.6;
-          margin-bottom: 2rem;
+          margin-bottom: 2.5rem;
           flex-grow: 1;
           font-weight: 600;
         }
@@ -212,17 +212,54 @@ export default function Services({ data = [] }) {
         @media (max-width: 768px) {
           .services-grid {
             grid-template-columns: repeat(2, 1fr);
+            gap: 0.875rem;
           }
           .services-title {
             font-size: 1.8rem;
           }
+          .service-card {
+            padding: 1.5rem 1rem 2.75rem 1rem;
+          }
+          .service-icon-wrapper {
+            margin-bottom: 1rem;
+            width: 55px;
+            height: 55px;
+          }
+          .service-name {
+            font-size: 1rem;
+            margin-bottom: 0.6rem;
+          }
+          .service-description {
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+          }
         }
         @media (max-width: 480px) {
+          .services-section {
+            padding: 0.75rem 0 1.5rem 0;
+          }
           .services-grid {
             grid-template-columns: 1fr;
+            gap: 0.75rem;
           }
           .container {
-            padding: 0 1.5rem;
+            padding: 0 1rem;
+          }
+          .service-card {
+            padding: 1.25rem 1rem 2.75rem 1rem;
+          }
+          .service-icon-wrapper {
+            margin-bottom: 0.75rem;
+            width: 48px;
+            height: 48px;
+          }
+          .service-name {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+          }
+          .service-description {
+            font-size: 0.82rem;
+            margin-bottom: 0.5rem;
           }
         }
       `}</style>

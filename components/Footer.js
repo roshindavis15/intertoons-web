@@ -165,6 +165,27 @@ export default function Footer() {
         @media (max-width: 640px) {
           .footer-grid {
             grid-template-columns: 1fr;
+            text-align: center;
+          }
+          .footer-brand .logo {
+            justify-content: center;
+          }
+          .footer-desc {
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+          }
+          .social-links {
+            justify-content: center;
+          }
+          .contact-info li {
+            justify-content: center;
+          }
+          .footer-bottom {
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            text-align: center;
           }
         }
       `}</style>
