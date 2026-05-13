@@ -87,7 +87,7 @@ const ShopifyProcess = ({ whyChooseList = "", processSteps = "", serviceTitle = 
             
             <div className="shopify-partner-badge">
               <div className="partner-logo">
-                <Image src="/images/shopify-partners-logo.png" alt="Shopify Partner" width={140} height={40} />
+                <Image src="/images/shopify-icon.png" alt="Shopify Partner" width={40} height={40} />
               </div>
               <div className="partner-text">
                 <strong>Official Shopify Partner</strong>

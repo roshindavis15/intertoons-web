@@ -14,8 +14,8 @@ export async function generateMetadata({ params }) {
   if (!service) return { title: "Service Not Found" };
 
   return {
-    title: `${service.title} | Intertoons`,
-    description: service['short description'] || service['full description'],
+    title: service['SEO Title'] || `${service.title} | Intertoons`,
+    description: service['SEO Description'] || service['short description'] || service['full description'],
   };
 }
 
@@ -34,6 +34,14 @@ export default async function ServicePage({ params }) {
 
   return (
     <div className="service-page">
+      {/* Dynamic Schema Injection */}
+      {service['Schema Markup'] && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: service['Schema Markup'] }}
+        />
+      )}
+
       {isShopify ? (
         <>
           <ShopifyHero data={service.hero} serviceTitle={service.title} />
