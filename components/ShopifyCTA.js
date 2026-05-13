@@ -19,8 +19,8 @@ const ShopifyCTA = () => {
           </div>
           <div className="cta-image">
             <Image 
-              src="/images/shopify-bag.png" 
-              alt="Shopify Shopping Bag" 
+              src="/images/shopify-icon.png" 
+              alt="Shopify Icon" 
               width={120} 
               height={120}
               className="floating-bag"

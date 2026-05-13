@@ -8,7 +8,32 @@ import { IoBriefcaseOutline } from 'react-icons/io5';
 import { FaCheckCircle, FaStore, FaClock, FaTools } from 'react-icons/fa';
 import './ShopifyHero.css';
 
-const ShopifyHero = () => {
+const ShopifyHero = ({ data = {}, serviceTitle = "Shopify Developers" }) => {
+  const {
+    'Title': heroTitle = "",
+    'Subtitle': heroSubtitle = "Build. Scale. Succeed with Shopify Experts in Kerala",
+    'Description': description = "Intertoons is a leading Shopify development company in Kerala...",
+    'CTA Button Text': ctaText = "Talk to Our Shopify Expert",
+    'Secondary CTA Button Text': secondaryCtaText = "View Our Work",
+    'Desktop Image': bannerImage = [],
+    'Trust Points': trustPointsRaw = ""
+  } = data;
+
+  // Split trust points by newline
+  const trustPoints = trustPointsRaw 
+    ? trustPointsRaw.split('\n').filter(p => p.trim() !== '') 
+    : [
+        "Shopify Certified Experts",
+        "100+ Stores Delivered",
+        "On-time Delivery",
+        "Ongoing Support & Maintenance"
+      ];
+
+  const heroImageUrl = bannerImage?.[0]?.url || "/images/shopify-hero-mockup.png";
+
+  // Icons mapping for trust points
+  const icons = [<FaCheckCircle />, <FaStore />, <FaClock />, <FaTools />];
+
   return (
     <section className="shopify-hero">
       <div className="container">
@@ -17,52 +42,44 @@ const ShopifyHero = () => {
           <nav className="breadcrumbs">
             <Link href="/">Home</Link>
             <span>Services</span>
-            <span>Shopify Developers Kerala</span>
+            <span>{serviceTitle}</span>
           </nav>
 
-          <span className="hero-subtitle">Shopify Developers Kerala</span>
-          <h1>Build. Scale. Succeed with <span>Shopify Experts</span> in Kerala</h1>
+          <span className="hero-subtitle">{serviceTitle}</span>
+          <h1 dangerouslySetInnerHTML={{ 
+            __html: heroSubtitle.replace('Shopify Experts', '<span>Shopify Experts</span>') 
+          }} />
 
-          <p className="hero-description">
-            Intertoons is a leading Shopify development company in Kerala,
-            delivering high-converting, custom Shopify stores that help
-            brands grow online and achieve real results.
-          </p>
+          <p className="hero-description">{description}</p>
 
           <div className="hero-actions">
             <Link href="/contact" className="btn btn-primary btn-hero">
-              Talk to Our Shopify Expert <HiArrowRight />
+              {ctaText} <HiArrowRight />
             </Link>
             <Link href="/portfolio" className="btn btn-outline btn-hero">
-              View Our Work <IoBriefcaseOutline />
+              {secondaryCtaText} <IoBriefcaseOutline />
             </Link>
           </div>
 
           <div className="trust-badges">
-            <div className="badge-item">
-              <div className="badge-icon">
-                <FaCheckCircle />
-              </div>
-              <div className="badge-text">Shopify Certified<br />Experts</div>
-            </div>
-            <div className="badge-item">
-              <div className="badge-icon">
-                <FaStore />
-              </div>
-              <div className="badge-text">100+ Stores<br />Delivered</div>
-            </div>
-            <div className="badge-item">
-              <div className="badge-icon">
-                <FaClock />
-              </div>
-              <div className="badge-text">On-time<br />Delivery</div>
-            </div>
-            <div className="badge-item">
-              <div className="badge-icon">
-                <FaTools />
-              </div>
-              <div className="badge-text">Ongoing Support<br />& Maintenance</div>
-            </div>
+            {trustPoints.map((point, index) => {
+              // Split point into two lines if it has spaces and is long
+              const parts = point.split(' ');
+              const mid = Math.ceil(parts.length / 2);
+              const line1 = parts.slice(0, mid).join(' ');
+              const line2 = parts.slice(mid).join(' ');
+
+              return (
+                <div className="badge-item" key={index}>
+                  <div className="badge-icon">
+                    {icons[index % icons.length]}
+                  </div>
+                  <div className="badge-text">
+                    {line1}<br />{line2}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 
@@ -71,8 +88,8 @@ const ShopifyHero = () => {
           <div className="mockup-wrapper">
             <Image
               key="shopify-mockup-v2"
-              src="/images/shopify-hero-mockup.png"
-              alt="Shopify Store Mockup"
+              src={heroImageUrl}
+              alt={serviceTitle}
               width={1200}
               height={900}
               style={{ width: '100%', height: 'auto' }}

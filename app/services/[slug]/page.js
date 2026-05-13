@@ -4,7 +4,7 @@ import ShopifyProcess from "@/components/ShopifyProcess";
 import ShopifyPortfolio from "@/components/ShopifyPortfolio";
 import ShopifyCTA from "@/components/ShopifyCTA";
 import CTA from "@/components/CTA";
-import { getServiceBySlug } from "@/lib/airtable";
+import { getServiceBySlug, getServiceFeatures, getPortfolioByServiceSlug } from "@/lib/airtable";
 import { notFound } from "next/navigation";
 
 export async function generateMetadata({ params }) {
@@ -22,6 +22,7 @@ export async function generateMetadata({ params }) {
 export default async function ServicePage({ params }) {
   const { slug } = await params;
   const service = await getServiceBySlug(slug);
+  const features = await getServiceFeatures(slug);
 
   if (!service) {
     notFound();
@@ -35,10 +36,18 @@ export default async function ServicePage({ params }) {
     <div className="service-page">
       {isShopify ? (
         <>
-          <ShopifyHero />
-          <ShopifyServices />
-          <ShopifyProcess />
-          <ShopifyPortfolio />
+          <ShopifyHero data={service.hero} serviceTitle={service.title} />
+          <ShopifyServices features={service.features} />
+          <ShopifyProcess 
+            whyChooseList={service['Why Choose Us List']} 
+            processSteps={service['Service Process Steps']} 
+            serviceTitle={service.title}
+          />
+          <ShopifyPortfolio 
+            stats={service['Service Stats List']} 
+            projects={service.portfolio}
+            serviceTitle={service.title}
+          />
           <ShopifyCTA />
         </>
       ) : (

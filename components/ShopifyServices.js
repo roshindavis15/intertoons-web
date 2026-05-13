@@ -2,7 +2,16 @@ import React from 'react';
 import { FaStore, FaPalette, FaCube, FaArrowRight, FaRocket, FaTools } from 'react-icons/fa';
 import './ShopifyServices.css';
 
-const services = [
+const iconMap = {
+  'setup': <FaStore />,
+  'theme': <FaPalette />,
+  'app': <FaCube />,
+  'migration': <FaArrowRight />,
+  'speed': <FaRocket />,
+  'support': <FaTools />
+};
+
+const defaultServices = [
   {
     icon: <FaStore />,
     title: "Shopify Store Development",
@@ -35,7 +44,45 @@ const services = [
   }
 ];
 
-const ShopifyServices = () => {
+const ShopifyServices = ({ features = [] }) => {
+  let displayServices = [];
+
+  if (features.length > 0) {
+    // Case 1: Check if it's a single record with a bulk string (User's latest setup)
+    if (features.length === 1 && features[0]['Feature Title']?.includes('|')) {
+      const bulkString = features[0]['Feature Title'];
+      // The bulk string might have newlines, but if not, we try to split by known patterns
+      // However, usually it's one per line.
+      displayServices = bulkString.split('\n').filter(s => s.trim() !== '').map(line => {
+        const [title, description, iconName] = line.split('|').map(s => s.trim());
+        return {
+          title,
+          description,
+          icon: iconMap[iconName?.toLowerCase()] || <FaStore />
+        };
+      });
+    } 
+    // Case 2: Standard array of feature objects
+    else {
+      displayServices = features.map(f => {
+        const iconAttachment = f['Feature Icon']?.[0]?.url;
+        const iconName = f['Icon Name']?.toLowerCase();
+        
+        return {
+          title: f['Feature Title'],
+          description: f['Feature Description'],
+          icon: iconAttachment ? (
+            <img src={iconAttachment} alt={f['Feature Title']} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+          ) : (
+            iconMap[iconName] || <FaStore />
+          )
+        };
+      });
+    }
+  } else {
+    displayServices = defaultServices;
+  }
+
   return (
     <section className="shopify-services">
       <div className="container">
@@ -45,7 +92,7 @@ const ShopifyServices = () => {
         </div>
         
         <div className="services-grid">
-          {services.map((service, index) => (
+          {displayServices.map((service, index) => (
             <div key={index} className="service-card">
               <div className="service-icon">
                 {service.icon}
