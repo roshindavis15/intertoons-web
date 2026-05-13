@@ -40,22 +40,41 @@ export default function Header({ navItems = [] }) {
         {/* Desktop Nav */}
         <nav className="nav desktop-nav">
           <ul>
-            {navItems.map((item, i) => (
-              <li key={i} className={pathname === item.slug ? 'active' : ''}>
-                <Link href={item.slug}>{item.title}</Link>
-              </li>
-            ))}
+            {navItems.map((item, i) => {
+              const hasChildren = item.children && item.children.length > 0;
+              return (
+                <li 
+                  key={i} 
+                  className={`${pathname === item.slug ? 'active' : ''} ${hasChildren ? 'has-dropdown' : ''}`}
+                >
+                  <Link href={item.slug}>
+                    {item.title}
+                    {hasChildren && <span className="dropdown-arrow">▾</span>}
+                  </Link>
+                  
+                  {hasChildren && (
+                    <ul className="dropdown-menu">
+                      {item.children.map((child, j) => (
+                        <li key={j}>
+                          <Link href={child.slug}>{child.title}</Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </nav>
 
-        {/* Desktop CTA */}
+        {/* Desktop CTA ... existing code ... */}
         <div className="header-actions desktop-actions">
           <Link href="/contact" className="btn-quote">
             Request for a Quote <span className="arrow">→</span>
           </Link>
         </div>
 
-        {/* Hamburger Toggle */}
+        {/* ... mobile toggle ... */}
         <button
           className={`mobile-toggle ${isMenuOpen ? 'open' : ''}`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -71,11 +90,25 @@ export default function Header({ navItems = [] }) {
       <div className={`mobile-menu ${isMenuOpen ? 'active' : ''}`}>
         <nav className="mobile-nav">
           <ul>
-            {navItems.map((item, i) => (
-              <li key={i} className={pathname === item.slug ? 'active' : ''}>
-                <Link href={item.slug}>{item.title}</Link>
-              </li>
-            ))}
+            {navItems.map((item, i) => {
+              const hasChildren = item.children && item.children.length > 0;
+              return (
+                <li key={i} className={`${pathname === item.slug ? 'active' : ''} ${hasChildren ? 'mobile-has-dropdown' : ''}`}>
+                  <Link href={item.slug}>{item.title}</Link>
+                  {hasChildren && (
+                    <ul className="mobile-dropdown">
+                      {item.children.map((child, j) => (
+                        <li key={j}>
+                          <Link href={child.slug} onClick={() => setIsMenuOpen(false)}>
+                            {child.title}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              );
+            })}
           </ul>
           <div className="mobile-actions">
             <Link href="/contact" className="btn-quote mobile-btn">

@@ -5,8 +5,12 @@ import Image from 'next/image';
 export default function TechStack({ data = [] }) {
   const techs = data.length > 0 
     ? data
-        .filter(t => t['Technology Name'] || t['Icon/Image'])
-        .sort((a, b) => (a['Display Order'] || 0) - (b['Display Order'] || 0))
+        .filter(t => t['title'] || t['Technology Name'] || t['icon'] || t['Icon/Image'])
+        .sort((a, b) => {
+          const orderA = a['sort order'] ?? a['Display Order'] ?? 0;
+          const orderB = b['sort order'] ?? b['Display Order'] ?? 0;
+          return orderA - orderB;
+        })
     : [
         { name: 'shopify', label: 'shopify' },
         { name: 'wix', label: 'WIX STUDIO' },
@@ -27,9 +31,9 @@ export default function TechStack({ data = [] }) {
           </div>
           <div className="tech-grid">
             {techs.map((tech, index) => {
-              const name = tech['Technology Name'] || tech.name || "tech";
-              const label = tech['Technology Name'] || tech.label || "Technology";
-              const icon = tech['Icon/Image']?.[0]?.url;
+              const name = tech['title'] || tech['Technology Name'] || tech.name || "tech";
+              const label = tech['title'] || tech['Technology Name'] || tech.label || "Technology";
+              const icon = tech['icon']?.[0]?.url || tech['Icon/Image']?.[0]?.url;
 
               return (
                 <div key={tech.id || index} className="tech-item-container">

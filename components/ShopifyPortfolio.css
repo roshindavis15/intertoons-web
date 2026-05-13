@@ -1,0 +1,191 @@
+.shopify-portfolio-section {
+  padding-bottom: 5rem;
+  background: #ffffff;
+}
+
+.shopify-portfolio-section .container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Stats Bar */
+.shopify-stats-bar {
+  background: #0056D2;
+  border-radius: 15px;
+  padding: 2.5rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5rem;
+  margin-top: -3rem; /* Overlap slightly with above section if needed, or adjust */
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 10px 30px rgba(0, 86, 210, 0.2);
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex: 1;
+  justify-content: center;
+  position: relative;
+}
+
+.stat-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 40px;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.stat-icon {
+  font-size: 2.5rem;
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+.stat-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-num {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+/* Portfolio Content */
+.portfolio-content {
+  padding: 2rem 0;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.project-card {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 86, 210, 0.1);
+}
+
+.project-image {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: #f8faff;
+  overflow: hidden;
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0056D2;
+}
+
+.project-info {
+  padding: 1.5rem;
+}
+
+.project-info h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0c1a3d;
+  margin-bottom: 0.5rem;
+}
+
+.project-info p {
+  font-size: 0.9rem;
+  color: #718096;
+  margin: 0;
+}
+
+.portfolio-footer {
+  text-align: center;
+}
+
+.btn-view-more {
+  border-radius: 10px !important;
+  padding: 0.85rem 2rem;
+  font-weight: 700;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  color: #0056D2 !important;
+}
+
+.btn-view-more:hover {
+  background: #f0f7ff !important;
+  border-color: #0056D2 !important;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .shopify-stats-bar {
+    padding: 2rem;
+    gap: 1rem;
+  }
+  
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .shopify-stats-bar {
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  
+  .stat-item {
+    flex: 0 0 calc(50% - 1rem);
+  }
+  
+  .stat-item:nth-child(2)::after {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .shopify-stats-bar {
+    padding: 2rem 1.5rem;
+  }
+  
+  .stat-item {
+    flex: 0 0 100%;
+    justify-content: flex-start;
+  }
+  
+  .stat-item::after {
+    display: none;
+  }
+  
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}

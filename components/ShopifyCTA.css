@@ -1,0 +1,121 @@
+.shopify-cta-section {
+  padding: 4rem 0 6rem;
+  background: #ffffff;
+}
+
+.shopify-cta-section .container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.shopify-cta-card {
+  background: #0056D2;
+  border-radius: 15px;
+  padding: 2rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0, 86, 210, 0.2);
+}
+
+.cta-content {
+  flex: 1;
+  max-width: 600px;
+  z-index: 2;
+}
+
+.cta-content h2 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+  text-align: left !important; /* Force override */
+}
+
+.cta-content p {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  font-weight: 500;
+}
+
+.cta-actions {
+  margin: 0 3rem;
+  z-index: 2;
+}
+
+.cta-button {
+  background: #ffffff;
+  color: #0056D2;
+  border: none;
+  padding: 0.85rem 1.75rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.cta-button:hover {
+  background: #f8faff;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.cta-image {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.floating-bag {
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .shopify-cta-card {
+    padding: 3rem;
+  }
+  
+  .cta-content h2 {
+    font-size: 1.8rem;
+  }
+  
+  .cta-image {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .shopify-cta-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 2.5rem;
+  }
+  
+  .cta-content h2 {
+    text-align: center !important;
+  }
+  
+  .cta-actions {
+    margin: 0;
+  }
+}

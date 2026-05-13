@@ -7,18 +7,20 @@ import './Hero.css';
 export default function Hero({ data = {} }) {
   const content = data;
   
-  if (!content['Hero Title']) return null;
+  if (!content['Title']) return null;
 
   const {
-    'Hero Title': title = "",
-    'Hero Description': description = "",
-    'Hero Subtitle': subtitle = "",
+    'Title': title = "",
+    'Description': description = "",
+    'Subtitle': subtitle = "",
     'Button 1 Text': btn1 = "Explore Services",
     'Button 2 Text': btn2 = "View Our Work",
-    'Hero Banner Image': bannerImage = []
+    'Desktop Image': bannerImage = [],
+    'CTA Button Link': btn1Link = "/services",
+    'Secondary CTA Button': btn2Link = "/work"
   } = content;
 
-  // Use the first attachment from the Hero Banner Image field if available
+  // Use the first attachment from the Desktop Image field if available
   const heroImageUrl = bannerImage?.[0]?.url || "/images/hero-laptop-new.png";
 
   // Process title to highlight "Real Growth" or the last two words
@@ -59,10 +61,10 @@ export default function Hero({ data = {} }) {
           <p className="hero-description">{description}</p>
           
           <div className="hero-btns">
-            <Link href="/services" className="btn-primary-hero">
+            <Link href={btn1Link} className="btn-primary-hero">
               {btn1} <span className="arrow">→</span>
             </Link>
-            <Link href="/work" className="btn-outline-hero">
+            <Link href={btn2Link} className="btn-outline-hero">
               {btn2} <span className="play-icon-circle">▶</span>
             </Link>
           </div>

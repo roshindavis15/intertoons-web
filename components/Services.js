@@ -7,11 +7,11 @@ import { FaArrowRight } from 'react-icons/fa';
 export default function Services({ data = [] }) {
   
   const services = data
-    .filter(item => item['Service Name'])
+    .filter(item => item['title'])
     .map(item => ({
-      title: item['Service Name'],
-      desc: item['Description'],
-      icon: item['Icon/Image']?.[0]?.url || null,
+      title: item['title'],
+      desc: item['short description'],
+      icon: item['icon']?.[0]?.url || null,
     }));
 
   if (services.length === 0) return null;
