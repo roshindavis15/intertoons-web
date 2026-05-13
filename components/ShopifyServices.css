@@ -1,5 +1,5 @@
 .shopify-services {
-  padding: 5rem 0 2rem;
+  padding: 1rem 0 2rem;
   background: #ffffff;
 }
 
@@ -30,12 +30,15 @@
 }
 
 .services-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1.5rem;
 }
 
 .service-card {
+  flex: 0 1 calc(16.66% - 1.5rem);
+  min-width: 200px;
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.05);
   border-radius: 12px;

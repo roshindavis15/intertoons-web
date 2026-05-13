@@ -74,13 +74,16 @@
 }
 
 .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1.5rem;
   margin-bottom: 3.5rem;
 }
 
 .project-card {
+  flex: 0 1 calc(25% - 1.5rem);
+  min-width: 280px;
   background: #ffffff;
   border-radius: 16px;
   overflow: hidden;
