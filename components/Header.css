@@ -23,6 +23,8 @@
   gap: 0.5rem;
   text-decoration: none !important;
   white-space: nowrap;
+  cursor: pointer;
+  z-index: 10;
 }
 
 .logo-it {
@@ -134,6 +136,23 @@
   flex-direction: column !important;
   gap: 0 !important;
   z-index: 1000;
+  max-height: 400px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 86, 210, 0.2) transparent;
+}
+
+.dropdown-menu::-webkit-scrollbar {
+  width: 5px;
+}
+
+.dropdown-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb {
+  background: rgba(0, 86, 210, 0.2);
+  border-radius: 10px;
 }
 
 .has-dropdown:hover .dropdown-menu {

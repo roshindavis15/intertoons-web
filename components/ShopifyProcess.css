@@ -1,5 +1,5 @@
 .shopify-process-section {
-  padding: 2rem 0 5rem;
+  padding: 1rem 0 5rem;
   background: #ffffff;
 }
 
@@ -18,7 +18,7 @@
 
 /* Why Choose */
 .why-choose {
-  padding-top: 3.5rem;
+  padding-top: 1rem;
   text-align: left;
 }
 
@@ -86,7 +86,7 @@
 /* Process Container */
 .process-container {
   background: #f8faff;
-  padding: 3.5rem 2rem;
+  padding: 1.5rem 2rem;
   border-radius: 20px;
 }
 
@@ -179,9 +179,12 @@
 }
 
 @media (max-width: 768px) {
+  .shopify-process-section {
+    padding: 1rem 0 3rem;
+  }
   .steps-wrapper {
     flex-direction: column;
-    gap: 3rem;
+    gap: 2rem;
   }
   
   .step-connector {
@@ -200,6 +203,6 @@
   }
   
   .process-container {
-    padding: 2.5rem 1.5rem;
+    padding: 1.5rem 1.25rem;
   }
 }

@@ -90,16 +90,16 @@
 }
 
 @media (max-width: 768px) {
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .shopify-services {
+    padding: 1.5rem 0 1.5rem;
+  }
+  .service-card {
+    flex: 0 0 calc(100% - 1rem); /* Increased width */
+    max-width: 450px;
   }
 }
 
 @media (max-width: 480px) {
-  .services-grid {
-    grid-template-columns: 1fr;
-  }
-  
   .section-header h2 {
     font-size: 1.75rem;
   }

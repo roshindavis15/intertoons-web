@@ -1,5 +1,5 @@
 .shopify-portfolio-section {
-  padding-bottom: 5rem;
+  padding-bottom: 1rem;
   background: #ffffff;
 }
 
@@ -17,7 +17,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 5rem;
+  margin-bottom: 2.5rem;
   margin-top: -3rem; /* Overlap slightly with above section if needed, or adjust */
   position: relative;
   z-index: 10;
@@ -70,7 +70,11 @@
 
 /* Portfolio Content */
 .portfolio-content {
-  padding: 2rem 0;
+  padding: 1rem 0;
+}
+
+.portfolio-content .section-header {
+  margin-bottom: 2rem;
 }
 
 .projects-grid {
@@ -160,9 +164,14 @@
 }
 
 @media (max-width: 768px) {
+  .shopify-portfolio-section {
+    padding-bottom: 2rem;
+  }
   .shopify-stats-bar {
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
   }
   
   .stat-item {

@@ -8,11 +8,17 @@ export default function Services({ data = [] }) {
   
   const services = data
     .filter(item => item['title'])
-    .map(item => ({
-      title: item['title'],
-      desc: item['short description'],
-      icon: item['icon']?.[0]?.url || null,
-    }));
+    .map(item => {
+      const title = item['title'];
+      const slug = item['slug'];
+      
+      return {
+        title,
+        slug: slug ? `/services/${slug}` : '#',
+        desc: item['short description'],
+        icon: item['icon']?.[0]?.url || null,
+      };
+    });
 
   if (services.length === 0) return null;
 
@@ -26,22 +32,24 @@ export default function Services({ data = [] }) {
         
         <div className="services-grid">
           {services.map((service, index) => (
-            <div key={index} className="service-card">
-              <div className="service-icon-wrapper">
-                {service.icon && (
-                  <img 
-                    src={service.icon} 
-                    alt={service.title} 
-                    className="service-img"
-                  />
-                )}
+            <Link href={service.slug} key={index} className="service-card-link">
+              <div className="service-card">
+                <div className="service-icon-wrapper">
+                  {service.icon && (
+                    <img 
+                      src={service.icon} 
+                      alt={service.title} 
+                      className="service-img"
+                    />
+                  )}
+                </div>
+                <h3 className="service-name">{service.title}</h3>
+                <p className="service-description">{service.desc}</p>
+                <div className="service-arrow">
+                  <FaArrowRight className="arrow-icon" />
+                </div>
               </div>
-              <h3 className="service-name">{service.title}</h3>
-              <p className="service-description">{service.desc}</p>
-              <div className="service-arrow">
-                <FaArrowRight className="arrow-icon" />
-              </div>
-            </div>
+            </Link>
           ))}
         </div>
         
@@ -106,6 +114,11 @@ export default function Services({ data = [] }) {
           grid-template-columns: repeat(5, 1fr);
           gap: 1.25rem;
           margin-bottom: 2rem;
+        }
+        .service-card-link {
+          text-decoration: none !important;
+          color: inherit;
+          display: block;
         }
         .service-card {
           background: #ffffff;
