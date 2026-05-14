@@ -14,7 +14,7 @@
   border-radius: 12px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1.75rem 3rem;
+  padding: 1.2rem 3rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -58,7 +58,7 @@
 .sc-cta-button {
   background: #ffffff;
   color: #0056D2 !important;
-  padding: 0.85rem 1.75rem;
+  padding: 0.7rem 1.75rem;
   border-radius: 8px;
   font-weight: 700;
   font-size: 1rem;
@@ -86,9 +86,15 @@
   justify-content: center;
 }
 
-.sc-floating-bag {
+.sc-floating-icon {
   object-fit: contain;
   filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+  animation: floatIcon 4s ease-in-out infinite;
+}
+
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 /* Responsive */

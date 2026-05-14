@@ -3,8 +3,10 @@ import ShopifyServices from "@/components/ShopifyServices";
 import ShopifyProcess from "@/components/ShopifyProcess";
 import ShopifyPortfolio from "@/components/ShopifyPortfolio";
 import ShopifyCTA from "@/components/ShopifyCTA";
+import Testimonials from "@/components/Testimonials";
+import TechStack from "@/components/TechStack";
 import CTA from "@/components/CTA";
-import { getServiceBySlug, getPortfolioByServiceSlug } from "@/lib/airtable";
+import { getServiceBySlug } from "@/lib/airtable";
 import { notFound } from "next/navigation";
 
 export async function generateMetadata({ params }) {
@@ -13,7 +15,6 @@ export async function generateMetadata({ params }) {
   
   if (!service) return { title: "Service Not Found" };
   
-  // Use seo title and seo description from Airtable with fallbacks
   return {
     title: service['seo title'] || service['SEO Title'] || `${service.title} | Intertoons`,
     description: service['seo description'] || service['SEO Description'] || service['short description'] || service['full description'],
@@ -29,10 +30,9 @@ export default async function ServicePage({ params }) {
   }
 
   // Determine if we should show the specialized Shopify hero
-  // We'll match if the slug contains 'shopify'
   const isShopify = slug.toLowerCase().includes('shopify');
 
-  // Handle schema markup field variants (including 'shema' typo support)
+  // Handle schema markup field variants
   const schemaMarkup = service['shema markup'] || service['Schema Markup'] || service['schema markup'];
 
   return (
@@ -49,6 +49,11 @@ export default async function ServicePage({ params }) {
         <>
           <ShopifyHero data={service.hero} serviceTitle={service.title} />
           <ShopifyServices features={service.features || []} />
+          
+          {service.technologies && service.technologies.length > 0 && (
+            <TechStack data={service.technologies} />
+          )}
+
           <ShopifyProcess 
             whyChooseList={service['Why Choose Us List']} 
             processSteps={service['Service Process Steps']} 
@@ -59,6 +64,11 @@ export default async function ServicePage({ params }) {
             projects={service.portfolio}
             serviceTitle={service.title}
           />
+          {service.testimonials && service.testimonials.length > 0 && (
+            <div style={{ background: '#ffffff', padding: '2rem 0' }}>
+              <Testimonials data={service.testimonials} />
+            </div>
+          )}
           <ShopifyCTA />
         </>
       ) : (

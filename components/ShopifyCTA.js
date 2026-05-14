@@ -21,11 +21,11 @@ const ShopifyCTA = () => {
             
             <div className={styles['sc-cta-image']}>
               <Image 
-                src="/images/shopify-bag.png" 
-                alt="Shopify bag" 
-                width={130} 
-                height={130}
-                className={styles['sc-floating-bag']}
+                src="/images/shopify-icon.png" 
+                alt="Shopify icon" 
+                width={120} 
+                height={120}
+                className={styles['sc-floating-icon']}
               />
             </div>
           </div>
