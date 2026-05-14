@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import './Hero.css';
+import styles from './Hero.module.css';
 
 export default function Hero({ data = {} }) {
   const content = data;
@@ -32,7 +32,7 @@ export default function Hero({ data = {} }) {
       const parts = text.split("Real Growth");
       return (
         <>
-          {parts[0]}<span className="highlight">Real Growth</span>{parts[1]}
+          {parts[0]}<span className={styles['highlight']}>Real Growth</span>{parts[1]}
         </>
       );
     }
@@ -44,7 +44,7 @@ export default function Hero({ data = {} }) {
       const rest = words.slice(0, -2).join(" ");
       return (
         <>
-          {rest} <span className="highlight">{lastTwo}</span>
+          {rest} <span className={styles['highlight']}>{lastTwo}</span>
         </>
       );
     }
@@ -53,43 +53,43 @@ export default function Hero({ data = {} }) {
   };
 
   return (
-    <section className="hero">
-      <div className="container hero-content">
-        <div className="hero-text">
-          <div className="badge">{subtitle}</div>
+    <section className={styles['hero']}>
+      <div className={`${styles['container']} ${styles['hero-content']}`}>
+        <div className={styles['hero-text']}>
+          <div className={styles['badge']}>{subtitle}</div>
           <h1>{highlightWords(title)}</h1>
-          <p className="hero-description">{description}</p>
+          <p className={styles['hero-description']}>{description}</p>
           
-          <div className="hero-btns">
-            <Link href={btn1Link} className="btn-primary-hero">
-              {btn1} <span className="arrow">→</span>
+          <div className={styles['hero-btns']}>
+            <Link href={btn1Link} className={styles['btn-primary-hero']}>
+              {btn1} <span className={styles['arrow']}>→</span>
             </Link>
-            <Link href={btn2Link} className="btn-outline-hero">
-              {btn2} <span className="play-icon-circle">▶</span>
+            <Link href={btn2Link} className={styles['btn-outline-hero']}>
+              {btn2} <span className={styles['play-icon-circle']}>▶</span>
             </Link>
           </div>
           
-          <div className="trust-indicator">
-            <div className="avatars">
+          <div className={styles['trust-indicator']}>
+            <div className={styles['avatars']}>
               {/* Using high-quality placeholder faces for the trust indicator */}
-              <div className="avatar-img">
+              <div className={styles['avatar-img']}>
                 <Image src="https://i.pravatar.cc/100?img=1" alt="Client" width={44} height={44} />
               </div>
-              <div className="avatar-img">
+              <div className={styles['avatar-img']}>
                 <Image src="https://i.pravatar.cc/100?img=2" alt="Client" width={44} height={44} />
               </div>
-              <div className="avatar-img">
+              <div className={styles['avatar-img']}>
                 <Image src="https://i.pravatar.cc/100?img=3" alt="Client" width={44} height={44} />
               </div>
-              <div className="avatar-img">
+              <div className={styles['avatar-img']}>
                 <Image src="https://i.pravatar.cc/100?img=4" alt="Client" width={44} height={44} />
               </div>
             </div>
-            <div className="trust-text">Trusted by 170+ businesses worldwide</div>
+            <div className={styles['trust-text']}>Trusted by 170+ businesses worldwide</div>
           </div>
         </div>
         
-        <div className="hero-visual">
+        <div className={styles['hero-visual']}>
           <Image 
             src={heroImageUrl} 
             alt="Intelligent Digital Solutions" 

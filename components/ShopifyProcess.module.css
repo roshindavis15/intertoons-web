@@ -3,13 +3,13 @@
   background: #ffffff;
 }
 
-.shopify-process-section .container {
+.sd-container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 2rem;
 }
 
-.process-grid {
+.sd-process-grid {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
   gap: 4rem;
@@ -17,12 +17,12 @@
 }
 
 /* Why Choose */
-.why-choose {
+.sd-why-choose {
   padding-top: 1rem;
   text-align: left;
 }
 
-.why-choose h2 {
+.sd-why-choose h2 {
   font-size: 2rem;
   font-weight: 800;
   color: #0c1a3d;
@@ -32,17 +32,17 @@
   text-align: left !important;
 }
 
-.why-choose h2 span {
+.sd-why-choose h2 span {
   color: #0056D2;
 }
 
-.points-list {
+.sd-points-list {
   list-style: none;
   padding: 0;
   margin: 0 0 3rem 0;
 }
 
-.points-list li {
+.sd-points-list li {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
@@ -52,14 +52,14 @@
   font-weight: 500;
 }
 
-.check-icon {
+.sd-check-icon {
   color: #0056D2;
   font-size: 1.2rem;
   margin-top: 0.2rem;
   flex-shrink: 0;
 }
 
-.shopify-partner-badge {
+.sd-shopify-partner-badge {
   display: flex;
   align-items: center;
   gap: 1.5rem;
@@ -70,27 +70,27 @@
   max-width: 450px;
 }
 
-.partner-text strong {
+.sd-partner-text strong {
   display: block;
   color: #0c1a3d;
   font-size: 1rem;
   margin-bottom: 0.25rem;
 }
 
-.partner-text p {
+.sd-partner-text p {
   font-size: 0.85rem;
   color: #718096;
   margin: 0;
 }
 
 /* Process Container */
-.process-container {
+.sd-process-container {
   background: #f8faff;
   padding: 1.5rem 2rem;
   border-radius: 20px;
 }
 
-.process-title {
+.sd-process-title {
   text-align: center;
   font-size: 1.75rem;
   font-weight: 800;
@@ -99,19 +99,19 @@
   margin-top: 0;
 }
 
-.steps-wrapper {
+.sd-steps-wrapper {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
 }
 
-.step-item {
+.sd-step-item {
   flex: 1;
   text-align: center;
   position: relative;
 }
 
-.step-icon-wrapper {
+.sd-step-icon-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -119,7 +119,7 @@
   position: relative;
 }
 
-.step-icon {
+.sd-step-icon {
   width: 60px;
   height: 60px;
   background: #ffffff;
@@ -134,7 +134,7 @@
   box-shadow: 0 4px 10px rgba(0, 86, 210, 0.1);
 }
 
-.step-connector {
+.sd-step-connector {
   position: absolute;
   top: 50%;
   left: calc(50% + 30px);
@@ -144,7 +144,7 @@
   z-index: 1;
 }
 
-.step-num {
+.sd-step-num {
   display: block;
   font-size: 1rem;
   font-weight: 800;
@@ -152,14 +152,14 @@
   margin-bottom: 0.5rem;
 }
 
-.step-content h4 {
+.sd-step-content h4 {
   font-size: 1.1rem;
   font-weight: 700;
   color: #0c1a3d;
   margin-bottom: 0.75rem;
 }
 
-.step-content p {
+.sd-step-content p {
   font-size: 0.85rem;
   color: #4a5568;
   line-height: 1.5;
@@ -168,12 +168,12 @@
 
 /* Responsive */
 @media (max-width: 1200px) {
-  .process-grid {
+  .sd-process-grid {
     grid-template-columns: 1fr;
     gap: 4rem;
   }
   
-  .shopify-partner-badge {
+  .sd-shopify-partner-badge {
     max-width: 100%;
   }
 }
@@ -182,27 +182,27 @@
   .shopify-process-section {
     padding: 1rem 0 3rem;
   }
-  .steps-wrapper {
+  .sd-steps-wrapper {
     flex-direction: column;
     gap: 2rem;
   }
   
-  .step-connector {
+  .sd-step-connector {
     display: none;
   }
   
-  .step-item {
+  .sd-step-item {
     display: flex;
     text-align: left;
     align-items: flex-start;
     gap: 1.5rem;
   }
   
-  .step-icon-wrapper {
+  .sd-step-icon-wrapper {
     margin-bottom: 0;
   }
   
-  .process-container {
+  .sd-process-container {
     padding: 1.5rem 1.25rem;
   }
 }

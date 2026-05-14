@@ -4,7 +4,7 @@ import ShopifyProcess from "@/components/ShopifyProcess";
 import ShopifyPortfolio from "@/components/ShopifyPortfolio";
 import ShopifyCTA from "@/components/ShopifyCTA";
 import CTA from "@/components/CTA";
-import { getServiceBySlug, getServiceFeatures, getPortfolioByServiceSlug } from "@/lib/airtable";
+import { getServiceBySlug, getPortfolioByServiceSlug } from "@/lib/airtable";
 import { notFound } from "next/navigation";
 
 export async function generateMetadata({ params }) {
@@ -13,16 +13,16 @@ export async function generateMetadata({ params }) {
   
   if (!service) return { title: "Service Not Found" };
   
+  // Use seo title and seo description from Airtable with fallbacks
   return {
-    title: service['SEO Title'] || `${service.title} | Intertoons`,
-    description: service['SEO Description'] || service['short description'] || service['full description'],
+    title: service['seo title'] || service['SEO Title'] || `${service.title} | Intertoons`,
+    description: service['seo description'] || service['SEO Description'] || service['short description'] || service['full description'],
   };
 }
 
 export default async function ServicePage({ params }) {
   const { slug } = await params;
   const service = await getServiceBySlug(slug);
-  const features = await getServiceFeatures(slug);
 
   if (!service) {
     notFound();
@@ -32,27 +32,30 @@ export default async function ServicePage({ params }) {
   // We'll match if the slug contains 'shopify'
   const isShopify = slug.toLowerCase().includes('shopify');
 
+  // Handle schema markup field variants (including 'shema' typo support)
+  const schemaMarkup = service['shema markup'] || service['Schema Markup'] || service['schema markup'];
+
   return (
     <div className="service-page">
       {/* Dynamic Schema Injection */}
-      {service['Schema Markup'] && (
+      {schemaMarkup && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: service['Schema Markup'] }}
+          dangerouslySetInnerHTML={{ __html: schemaMarkup }}
         />
       )}
 
       {isShopify ? (
         <>
           <ShopifyHero data={service.hero} serviceTitle={service.title} />
-          <ShopifyServices features={service.features} />
+          <ShopifyServices features={service.features || []} />
           <ShopifyProcess 
             whyChooseList={service['Why Choose Us List']} 
             processSteps={service['Service Process Steps']} 
             serviceTitle={service.title}
           />
           <ShopifyPortfolio 
-            stats={service['Service Stats List']} 
+            stats={service.milestones && service.milestones.length > 0 ? service.milestones : (service['Service Stats List'] || "")} 
             projects={service.portfolio}
             serviceTitle={service.title}
           />

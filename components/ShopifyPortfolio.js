@@ -1,15 +1,19 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaStore, FaSmile, FaAward, FaHeadset, FaArrowRight } from 'react-icons/fa';
-import './ShopifyPortfolio.css';
+import { FaStore, FaSmile, FaAward, FaHeadset, FaArrowRight, FaChartLine, FaUsers, FaHistory } from 'react-icons/fa';
+import styles from './ShopifyPortfolio.module.css';
 
 const statIconMap = {
   'stores': <FaStore />,
   'satisfaction': <FaSmile />,
   'experience': <FaAward />,
   'support': <FaHeadset />,
-  'experts': <FaAward />
+  'experts': <FaAward />,
+  'launched': <FaStore />,
+  'clients': <FaUsers />,
+  'years': <FaHistory />,
+  'growth': <FaChartLine />
 };
 
 const defaultStats = [
@@ -42,55 +46,80 @@ const defaultProjects = [
   }
 ];
 
-const ShopifyPortfolio = ({ stats = "", projects = [], serviceTitle = "Shopify" }) => {
-  const displayStats = stats 
-    ? stats.split('\n').filter(s => s.trim() !== '').map(line => {
-        const [num, label] = line.split('|').map(s => s.trim());
-        const iconKey = label.toLowerCase().split(' ').find(w => statIconMap[w]) || 'experience';
-        return {
-          num,
-          label,
-          icon: statIconMap[iconKey]
-        };
-      })
-    : defaultStats;
+const ShopifyPortfolio = ({ stats = [], projects = [], serviceTitle = "Shopify" }) => {
+  let displayStats = [];
 
-  const displayProjects = projects.length > 0 
+  // Handle various data formats for stats (linked record objects or string-based)
+  if (Array.isArray(stats) && stats.length > 0) {
+    displayStats = stats.map(item => {
+      // Handle Airtable linked record objects
+      const num = item.Count || item.Value || item.count || "";
+      const label = item.Title || item.title || item.Name || item.label || "";
+      const iconUrl = item.Icon?.[0]?.url || item.icon?.[0]?.url;
+      
+      // Smart icon matching based on label keywords
+      const iconKey = label.toLowerCase().split(' ').find(w => statIconMap[w]) || 'experience';
+      
+      return {
+        num: num.toString() + (parseInt(num) >= 100 && !num.toString().includes('+') ? '+' : ''),
+        label: label,
+        icon: iconUrl ? <img src={iconUrl} alt={label} style={{ width: '100%', height: '100%' }} /> : statIconMap[iconKey]
+      };
+    });
+  } else if (typeof stats === 'string' && stats.trim() !== '') {
+    // Handle legacy string-based format: "170+|Shopify Stores Launched\n98%|Client Satisfaction"
+    displayStats = stats.split('\n').filter(s => s.trim() !== '').map(line => {
+      const parts = line.split('|').map(s => s.trim());
+      const num = parts[0] || "";
+      const label = parts[1] || "";
+      const iconKey = label.toLowerCase().split(' ').find(w => statIconMap[w]) || 'experience';
+      return {
+        num,
+        label,
+        icon: statIconMap[iconKey]
+      };
+    });
+  } else {
+    // We strictly avoid fallbacks if the user provided data, but keep a safety net
+    displayStats = defaultStats;
+  }
+
+  const displayProjects = projects && projects.length > 0 
     ? projects.map(p => ({
-        title: p.title,
+        title: p.title || p.Title || "Project",
         category: p.Tags ? p.Tags.split('|')[0].trim() : serviceTitle,
-        image: p['featured image']?.[0]?.url || "/images/portfolio-placeholder.jpg"
+        image: p['featured image']?.[0]?.url || p['Featured Image']?.[0]?.url || "/images/portfolio-placeholder.jpg"
       }))
     : defaultProjects;
 
   return (
-    <section className="shopify-portfolio-section">
-      <div className="container">
+    <section className={styles['shopify-portfolio-section']}>
+      <div className={styles['sp-container']}>
         {/* Stats Bar */}
-        <div className="shopify-stats-bar">
+        <div className={styles['sp-stats-bar']}>
           {displayStats.map((stat, index) => (
-            <div key={index} className="stat-item">
-              <div className="stat-icon">{stat.icon}</div>
-              <div className="stat-text">
-                <span className="stat-num">{stat.num}</span>
-                <span className="stat-label">{stat.label}</span>
+            <div key={index} className={styles['sp-stat-item']}>
+              <div className={styles['sp-stat-icon']}>{stat.icon}</div>
+              <div className={styles['sp-stat-text']}>
+                <span className={styles['sp-stat-num']}>{stat.num}</span>
+                <span className={styles['sp-stat-label']}>{stat.label}</span>
               </div>
             </div>
           ))}
         </div>
 
         {/* Portfolio Section */}
-        <div className="portfolio-content">
-          <div className="section-header">
+        <div className={styles['sp-portfolio-content']}>
+          <div className={styles['sp-section-header']}>
             <h2>Our Recent {serviceTitle} Projects</h2>
-            <div className="underline"></div>
+            <div className={styles['sp-underline']}></div>
           </div>
 
-          <div className="projects-grid">
+          <div className={styles['sp-projects-grid']}>
             {displayProjects.map((project, index) => (
-              <div key={index} className="project-card">
-                <div className="project-image">
-                  <div className="image-placeholder">
+              <div key={index} className={styles['sp-project-card']}>
+                <div className={styles['sp-project-image']}>
+                  <div className={styles['sp-image-placeholder']}>
                     <Image 
                       src={project.image} 
                       alt={project.title} 
@@ -100,7 +129,7 @@ const ShopifyPortfolio = ({ stats = "", projects = [], serviceTitle = "Shopify" 
                     />
                   </div>
                 </div>
-                <div className="project-info">
+                <div className={styles['sp-project-info']}>
                   <h3>{project.title}</h3>
                   <p>{project.category}</p>
                 </div>
@@ -108,8 +137,8 @@ const ShopifyPortfolio = ({ stats = "", projects = [], serviceTitle = "Shopify" 
             ))}
           </div>
 
-          <div className="portfolio-footer">
-            <Link href="/portfolio" className="btn btn-outline btn-view-more">
+          <div className={styles['sp-portfolio-footer']}>
+            <Link href="/portfolio" className={`btn btn-outline ${styles['sp-btn-view-more']}`}>
               View More Projects <FaArrowRight />
             </Link>
           </div>

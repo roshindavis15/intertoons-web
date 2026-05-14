@@ -3,14 +3,14 @@
   background: #ffffff;
 }
 
-.shopify-portfolio-section .container {
+.sp-container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 2rem;
 }
 
 /* Stats Bar */
-.shopify-stats-bar {
+.sp-stats-bar {
   background: #0056D2;
   border-radius: 15px;
   padding: 2.5rem 3rem;
@@ -18,22 +18,23 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2.5rem;
-  margin-top: -3rem; /* Overlap slightly with above section if needed, or adjust */
+  margin-top: -3rem;
   position: relative;
   z-index: 10;
   box-shadow: 0 10px 30px rgba(0, 86, 210, 0.2);
 }
 
-.stat-item {
+.sp-stat-item {
   display: flex;
   align-items: center;
   gap: 1.25rem;
   flex: 1;
   justify-content: center;
   position: relative;
+  min-width: 200px;
 }
 
-.stat-item:not(:last-child)::after {
+.sp-stat-item:not(:last-child)::after {
   content: '';
   position: absolute;
   right: 0;
@@ -44,40 +45,68 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
-.stat-icon {
+.sp-stat-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 2.5rem;
   color: #ffffff;
   opacity: 0.9;
+  flex-shrink: 0;
 }
 
-.stat-text {
+.sp-stat-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.sp-stat-text {
   display: flex;
   flex-direction: column;
 }
 
-.stat-num {
+.sp-stat-num {
   font-size: 1.75rem;
   font-weight: 800;
   color: #ffffff;
   line-height: 1.1;
 }
 
-.stat-label {
+.sp-stat-label {
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.8);
   font-weight: 500;
 }
 
 /* Portfolio Content */
-.portfolio-content {
+.sp-portfolio-content {
   padding: 1rem 0;
 }
 
-.portfolio-content .section-header {
+.sp-section-header {
   margin-bottom: 2rem;
+  text-align: center;
 }
 
-.projects-grid {
+.sp-section-header h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0c1a3d;
+  margin-bottom: 0.75rem;
+}
+
+.sp-underline {
+  width: 60px;
+  height: 4px;
+  background: #0056D2;
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+.sp-projects-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -85,7 +114,7 @@
   margin-bottom: 3.5rem;
 }
 
-.project-card {
+.sp-project-card {
   flex: 0 1 calc(25% - 1.5rem);
   min-width: 280px;
   background: #ffffff;
@@ -95,20 +124,20 @@
   transition: all 0.3s ease;
 }
 
-.project-card:hover {
+.sp-project-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
   border-color: rgba(0, 86, 210, 0.1);
 }
 
-.project-image {
+.sp-project-image {
   width: 100%;
   aspect-ratio: 4/3;
   background: #f8faff;
   overflow: hidden;
 }
 
-.image-placeholder {
+.sp-image-placeholder {
   width: 100%;
   height: 100%;
   display: flex;
@@ -117,28 +146,28 @@
   color: #0056D2;
 }
 
-.project-info {
+.sp-project-info {
   padding: 1.5rem;
 }
 
-.project-info h3 {
+.sp-project-info h3 {
   font-size: 1.2rem;
   font-weight: 700;
   color: #0c1a3d;
   margin-bottom: 0.5rem;
 }
 
-.project-info p {
+.sp-project-info p {
   font-size: 0.9rem;
   color: #718096;
   margin: 0;
 }
 
-.portfolio-footer {
+.sp-portfolio-footer {
   text-align: center;
 }
 
-.btn-view-more {
+.sp-btn-view-more {
   border-radius: 10px !important;
   padding: 0.85rem 2rem;
   font-weight: 700;
@@ -146,19 +175,19 @@
   color: #0056D2 !important;
 }
 
-.btn-view-more:hover {
+.sp-btn-view-more:hover {
   background: #f0f7ff !important;
   border-color: #0056D2 !important;
 }
 
 /* Responsive */
 @media (max-width: 1200px) {
-  .shopify-stats-bar {
+  .sp-stats-bar {
     padding: 2rem;
     gap: 1rem;
   }
   
-  .projects-grid {
+  .sp-projects-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -167,37 +196,37 @@
   .shopify-portfolio-section {
     padding-bottom: 2rem;
   }
-  .shopify-stats-bar {
+  .sp-stats-bar {
     flex-wrap: wrap;
     gap: 1.5rem;
     padding: 1.5rem;
     margin-bottom: 2rem;
   }
   
-  .stat-item {
+  .sp-stat-item {
     flex: 0 0 calc(50% - 1rem);
   }
   
-  .stat-item:nth-child(2)::after {
+  .sp-stat-item:nth-child(2)::after {
     display: none;
   }
 }
 
 @media (max-width: 480px) {
-  .shopify-stats-bar {
+  .sp-stats-bar {
     padding: 2rem 1.5rem;
   }
   
-  .stat-item {
+  .sp-stat-item {
     flex: 0 0 100%;
     justify-content: flex-start;
   }
   
-  .stat-item::after {
+  .sp-stat-item::after {
     display: none;
   }
   
-  .projects-grid {
+  .sp-projects-grid {
     grid-template-columns: 1fr;
   }
 }

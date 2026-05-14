@@ -1,106 +1,145 @@
+'use client';
+
 import React from 'react';
-import { FaStore, FaPalette, FaCube, FaArrowRight, FaRocket, FaTools } from 'react-icons/fa';
-import './ShopifyServices.css';
+import { 
+  FaRocket, 
+  FaMobileAlt, 
+  FaMagic, 
+  FaSync, 
+  FaSearch, 
+  FaHeadset, 
+  FaCogs, 
+  FaChartLine 
+} from 'react-icons/fa';
+import styles from './ShopifyServices.module.css';
 
 const iconMap = {
-  'setup': <FaStore />,
-  'theme': <FaPalette />,
-  'app': <FaCube />,
-  'migration': <FaArrowRight />,
-  'speed': <FaRocket />,
-  'support': <FaTools />
+  'setup': <FaRocket />,
+  'mobile': <FaMobileAlt />,
+  'custom': <FaMagic />,
+  'migration': <FaSync />,
+  'seo': <FaSearch />,
+  'support': <FaHeadset />,
+  'integration': <FaCogs />,
+  'growth': <FaChartLine />
 };
 
-const defaultServices = [
+const defaultFeatures = [
   {
-    icon: <FaStore />,
-    title: "Shopify Store Development",
-    description: "Custom Shopify stores designed to reflect your brand and maximize conversions."
+    title: "Store Setup",
+    desc: "End-to-end store setup from theme selection to payment gateway integration.",
+    icon: 'setup'
   },
   {
-    icon: <FaPalette />,
-    title: "Shopify Theme Customization",
-    description: "Beautiful, responsive & SEO-friendly themes customized to match your business."
+    title: "Custom Development",
+    desc: "Tailored Shopify solutions with custom features and unique user experiences.",
+    icon: 'custom'
   },
   {
-    icon: <FaCube />,
-    title: "Shopify App Development",
-    description: "Custom apps and integrations to extend store functionality and improve performance."
+    title: "App Integration",
+    desc: "Seamless integration of third-party apps to extend your store functionality.",
+    icon: 'integration'
   },
   {
-    icon: <FaArrowRight />,
-    title: "Migration to Shopify",
-    description: "Seamless migration from any platform to Shopify with zero data loss."
+    title: "Theme Customization",
+    desc: "Modifying existing themes to perfectly match your brand identity.",
+    icon: 'mobile'
   },
   {
-    icon: <FaRocket />,
-    title: "Shopify Speed Optimization",
-    description: "Improve your store speed, performance and boost SEO rankings for better user experience."
+    title: "Migration",
+    desc: "Safe and secure migration from other platforms to Shopify without data loss.",
+    icon: 'sync'
   },
   {
-    icon: <FaTools />,
-    title: "Support & Maintenance",
-    description: "Ongoing support, updates and maintenance to keep your store running smoothly."
+    title: "SEO & Speed",
+    desc: "Optimizing your store for search engines and lightning-fast performance.",
+    icon: 'seo'
   }
 ];
 
 const ShopifyServices = ({ features = [] }) => {
-  let displayServices = [];
+  // Map features and handle multiple possible field name variants from Airtable
+  const displayFeatures = features && features.length > 0 
+    ? features.map(f => {
+        // Airtable records might be raw record objects or flattened field objects
+        const fields = f.fields || f; 
+        
+        // Comprehensive search for a title-like field
+        // We look for any property that matches common title names
+        const title = 
+          fields.title || 
+          fields.Title || 
+          fields['Service Title'] || 
+          fields['Feature Title'] || 
+          fields['Service Name'] || 
+          fields.Name || 
+          fields.Name || 
+          fields.Feature || 
+          fields['Feature Name'] || 
+          fields.Label || 
+          fields.Heading || 
+          fields.title || 
+          // Last resort: find the first string property that isn't ID or icon
+          Object.entries(fields).find(([k, v]) => 
+            typeof v === 'string' && 
+            !['id', 'ID', 'icon', 'Icon', 'Slug', 'slug', 'status', 'Status'].includes(k)
+          )?.[1] || 
+          "Shopify Service";
 
-  if (features.length > 0) {
-    // Case 1: Check if it's a single record with a bulk string (User's latest setup)
-    if (features.length === 1 && features[0]['Feature Title']?.includes('|')) {
-      const bulkString = features[0]['Feature Title'];
-      // The bulk string might have newlines, but if not, we try to split by known patterns
-      // However, usually it's one per line.
-      displayServices = bulkString.split('\n').filter(s => s.trim() !== '').map(line => {
-        const [title, description, iconName] = line.split('|').map(s => s.trim());
+        // Comprehensive search for a description-like field
+        const desc = 
+          fields.description || 
+          fields.Description || 
+          fields['Service Description'] || 
+          fields['Feature Description'] || 
+          fields.desc || 
+          fields.Summary || 
+          fields.summary || 
+          fields['short description'] || 
+          fields.text || 
+          fields.Content || 
+          fields.content || 
+          "";
+        
+        // Handle icon which could be a string key or an Airtable attachment array
+        let icon = fields.icon || fields.Icon || fields['Icon Name'] || fields['icon name'] || fields['Service Icon'] || 'setup';
+        if (Array.isArray(icon) && icon.length > 0) {
+          icon = icon[0].filename || icon[0].url || 'setup';
+        }
+        
         return {
           title,
-          description,
-          icon: iconMap[iconName?.toLowerCase()] || <FaStore />
+          desc,
+          icon: icon.toString()
         };
-      });
-    } 
-    // Case 2: Standard array of feature objects
-    else {
-      displayServices = features.map(f => {
-        const iconAttachment = f['Feature Icon']?.[0]?.url;
-        const iconName = f['Icon Name']?.toLowerCase();
-        
-        return {
-          title: f['Feature Title'],
-          description: f['Feature Description'],
-          icon: iconAttachment ? (
-            <img src={iconAttachment} alt={f['Feature Title']} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-          ) : (
-            iconMap[iconName] || <FaStore />
-          )
-        };
-      });
-    }
-  } else {
-    displayServices = defaultServices;
-  }
+      })
+    : defaultFeatures;
 
   return (
-    <section className="shopify-services">
-      <div className="container">
-        <div className="section-header">
-          <h2>Shopify Development Services We Offer</h2>
-          <div className="underline"></div>
+    <section className={styles['shopify-services']}>
+      <div className={styles['ss-container']}>
+        <div className={styles['ss-section-header']}>
+          <h2>Expert Shopify Services We Provide</h2>
+          <div className={styles['ss-underline']}></div>
         </div>
         
-        <div className="services-grid">
-          {displayServices.map((service, index) => (
-            <div key={index} className="service-card">
-              <div className="service-icon">
-                {service.icon}
+        <div className={styles['ss-services-grid']}>
+          {displayFeatures.map((service, index) => {
+            const iconKey = service.icon.toLowerCase();
+            const IconComponent = iconMap[iconKey] || (
+              service.icon.includes('http') ? <img src={service.icon} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} /> : <FaRocket />
+            );
+
+            return (
+              <div className={styles['ss-service-card']} key={index}>
+                <div className={styles['ss-service-icon']}>
+                  {IconComponent}
+                </div>
+                <h3>{service.title}</h3>
+                <p>{service.desc}</p>
               </div>
-              <h3>{service.title}</h3>
-              <p>{service.description}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

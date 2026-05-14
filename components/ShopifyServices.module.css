@@ -3,25 +3,25 @@
   background: #ffffff;
 }
 
-.shopify-services .container {
+.ss-container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 2rem;
 }
 
-.section-header {
+.ss-section-header {
   text-align: center;
   margin-bottom: 4rem;
 }
 
-.section-header h2 {
+.ss-section-header h2 {
   font-size: 2rem;
   font-weight: 800;
   color: #0c1a3d;
   margin-bottom: 0.75rem;
 }
 
-.section-header .underline {
+.ss-underline {
   width: 60px;
   height: 4px;
   background: #0056D2;
@@ -29,14 +29,14 @@
   border-radius: 2px;
 }
 
-.services-grid {
+.ss-services-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1.5rem;
 }
 
-.service-card {
+.ss-service-card {
   flex: 0 1 calc(16.66% - 1.5rem);
   min-width: 200px;
   background: #ffffff;
@@ -50,13 +50,13 @@
   align-items: center;
 }
 
-.service-card:hover {
+.ss-service-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   border-color: rgba(0, 86, 210, 0.1);
 }
 
-.service-icon {
+.ss-service-icon {
   font-size: 3rem;
   color: #0056D2;
   margin-bottom: 1.5rem;
@@ -65,7 +65,7 @@
   justify-content: center;
 }
 
-.service-card h3 {
+.ss-service-card h3 {
   font-size: 1.15rem;
   font-weight: 700;
   color: #0c1a3d;
@@ -76,7 +76,7 @@
   align-items: center;
 }
 
-.service-card p {
+.ss-service-card p {
   font-size: 0.9rem;
   color: #4a5568;
   line-height: 1.6;
@@ -84,7 +84,8 @@
 
 /* Responsive */
 @media (max-width: 1200px) {
-  .services-grid {
+  .ss-services-grid {
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
 }
@@ -93,14 +94,14 @@
   .shopify-services {
     padding: 1.5rem 0 1.5rem;
   }
-  .service-card {
-    flex: 0 0 calc(100% - 1rem); /* Increased width */
+  .ss-service-card {
+    flex: 0 0 calc(100% - 1rem);
     max-width: 450px;
   }
 }
 
 @media (max-width: 480px) {
-  .section-header h2 {
+  .ss-section-header h2 {
     font-size: 1.75rem;
   }
 }

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import './Header.css';
+import styles from './Header.module.css';
 
 export default function Header({ navItems = [] }) {
   const pathname = usePathname();
@@ -16,44 +16,46 @@ export default function Header({ navItems = [] }) {
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
-    document.body.style.overflow = isMenuOpen ? 'hidden' : 'unset';
+    if (typeof document !== 'undefined') {
+      document.body.style.overflow = isMenuOpen ? 'hidden' : 'unset';
+    }
   }, [isMenuOpen]);
 
   return (
-    <header className="header">
-      <div className="container header-content">
+    <header className={styles['header']}>
+      <div className={`${styles['container']} ${styles['header-content']}`}>
 
         {/* Logo */}
-        <div className="logo">
-          <Link href="/" className="logo-link">
-            <div className="logo-it">
-              <span className="i">i</span>
-              <span className="t">T</span>
+        <div className={styles['logo']}>
+          <Link href="/" className={styles['logo-link']}>
+            <div className={styles['logo-it']}>
+              <span className={styles['i']}>i</span>
+              <span className={styles['t']}>T</span>
             </div>
-            <div className="logo-text">
-              <span className="brand">INTERTOONS</span>
-              <span className="tagline">IMAGINATION MEETS INNOVATION</span>
+            <div className={styles['logo-text']}>
+              <span className={styles['brand']}>INTERTOONS</span>
+              <span className={styles['tagline']}>IMAGINATION MEETS INNOVATION</span>
             </div>
           </Link>
         </div>
 
         {/* Desktop Nav */}
-        <nav className="nav desktop-nav">
+        <nav className={`${styles['nav']} ${styles['desktop-nav']}`}>
           <ul>
             {navItems.map((item, i) => {
               const hasChildren = item.children && item.children.length > 0;
               return (
                 <li 
                   key={i} 
-                  className={`${pathname === item.slug ? 'active' : ''} ${hasChildren ? 'has-dropdown' : ''}`}
+                  className={`${pathname === item.slug ? styles['active'] : ''} ${hasChildren ? styles['has-dropdown'] : ''}`}
                 >
                   <Link href={item.slug}>
                     {item.title}
-                    {hasChildren && <span className="dropdown-arrow">▾</span>}
+                    {hasChildren && <span className={styles['dropdown-arrow']}>▾</span>}
                   </Link>
                   
                   {hasChildren && (
-                    <ul className="dropdown-menu">
+                    <ul className={styles['dropdown-menu']}>
                       {item.children.map((child, j) => (
                         <li key={j}>
                           <Link href={child.slug}>{child.title}</Link>
@@ -67,16 +69,16 @@ export default function Header({ navItems = [] }) {
           </ul>
         </nav>
 
-        {/* Desktop CTA ... existing code ... */}
-        <div className="header-actions desktop-actions">
-          <Link href="/contact" className="btn-quote">
-            Request for a Quote <span className="arrow">→</span>
+        {/* Desktop CTA */}
+        <div className={`${styles['header-actions']} ${styles['desktop-actions']}`}>
+          <Link href="/contact" className={styles['btn-quote']}>
+            Request for a Quote <span className={styles['arrow']}>→</span>
           </Link>
         </div>
 
-        {/* ... mobile toggle ... */}
+        {/* Mobile Toggle */}
         <button
-          className={`mobile-toggle ${isMenuOpen ? 'open' : ''}`}
+          className={`${styles['mobile-toggle']} ${isMenuOpen ? styles['open'] : ''}`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle Menu"
         >
@@ -87,16 +89,16 @@ export default function Header({ navItems = [] }) {
       </div>
 
       {/* Mobile Drawer */}
-      <div className={`mobile-menu ${isMenuOpen ? 'active' : ''}`}>
-        <nav className="mobile-nav">
+      <div className={`${styles['mobile-menu']} ${isMenuOpen ? styles['active'] : ''}`}>
+        <nav className={styles['mobile-nav']}>
           <ul>
             {navItems.map((item, i) => {
               const hasChildren = item.children && item.children.length > 0;
               return (
-                <li key={i} className={`${pathname === item.slug ? 'active' : ''} ${hasChildren ? 'mobile-has-dropdown' : ''}`}>
+                <li key={i} className={`${pathname === item.slug ? styles['active'] : ''} ${hasChildren ? styles['mobile-has-dropdown'] : ''}`}>
                   <Link href={item.slug}>{item.title}</Link>
                   {hasChildren && (
-                    <ul className="mobile-dropdown">
+                    <ul className={styles['mobile-dropdown']}>
                       {item.children.map((child, j) => (
                         <li key={j}>
                           <Link href={child.slug} onClick={() => setIsMenuOpen(false)}>
@@ -110,9 +112,9 @@ export default function Header({ navItems = [] }) {
               );
             })}
           </ul>
-          <div className="mobile-actions">
-            <Link href="/contact" className="btn-quote mobile-btn">
-              Request for a Quote <span className="arrow">→</span>
+          <div className={styles['mobile-actions']}>
+            <Link href="/contact" className={`${styles['btn-quote']} ${styles['mobile-btn']}`}>
+              Request for a Quote <span className={styles['arrow']}>→</span>
             </Link>
           </div>
         </nav>

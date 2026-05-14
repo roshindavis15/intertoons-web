@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaCheckCircle, FaSearch, FaLightbulb, FaCode, FaVial, FaRocket } from 'react-icons/fa';
 import Image from 'next/image';
-import './ShopifyProcess.css';
+import styles from './ShopifyProcess.module.css';
 
 const stepIconMap = {
   'discover': <FaSearch />,
@@ -70,26 +70,26 @@ const ShopifyProcess = ({ whyChooseList = "", processSteps = "", serviceTitle = 
     : defaultSteps;
 
   return (
-    <section className="shopify-process-section">
-      <div className="container">
-        <div className="process-grid">
+    <section className={styles['shopify-process-section']}>
+      <div className={styles['sd-container']}>
+        <div className={styles['sd-process-grid']}>
           {/* Left: Why Choose */}
-          <div className="why-choose">
+          <div className={styles['sd-why-choose']}>
             <h2>Why Choose Intertoons for <span>{serviceTitle} in Kerala?</span></h2>
-            <ul className="points-list">
+            <ul className={styles['sd-points-list']}>
               {points.map((point, index) => (
                 <li key={index}>
-                  <FaCheckCircle className="check-icon" />
+                  <FaCheckCircle className={styles['sd-check-icon']} />
                   <span>{point}</span>
                 </li>
               ))}
             </ul>
             
-            <div className="shopify-partner-badge">
-              <div className="partner-logo">
+            <div className={styles['sd-shopify-partner-badge']}>
+              <div className={styles['sd-partner-logo']}>
                 <Image src="/images/shopify-icon.png" alt="Shopify Partner" width={40} height={40} />
               </div>
-              <div className="partner-text">
+              <div className={styles['sd-partner-text']}>
                 <strong>Official Shopify Partner</strong>
                 <p>Building successful eCommerce businesses together.</p>
               </div>
@@ -97,17 +97,17 @@ const ShopifyProcess = ({ whyChooseList = "", processSteps = "", serviceTitle = 
           </div>
 
           {/* Right: Process */}
-          <div className="process-container">
-            <h3 className="process-title">Our {serviceTitle} Process</h3>
-            <div className="steps-wrapper">
+          <div className={styles['sd-process-container']}>
+            <h3 className={styles['sd-process-title']}>Our {serviceTitle} Process</h3>
+            <div className={styles['sd-steps-wrapper']}>
               {steps.map((step, index) => (
-                <div key={index} className="step-item">
-                  <div className="step-icon-wrapper">
-                    <div className="step-icon">{step.icon}</div>
-                    {index < steps.length - 1 && <div className="step-connector"></div>}
+                <div key={index} className={styles['sd-step-item']}>
+                  <div className={styles['sd-step-icon-wrapper']}>
+                    <div className={styles['sd-step-icon']}>{step.icon}</div>
+                    {index < steps.length - 1 && <div className={styles['sd-step-connector']}></div>}
                   </div>
-                  <div className="step-content">
-                    <span className="step-num">{step.num}</span>
+                  <div className={styles['sd-step-content']}>
+                    <span className={styles['sd-step-num']}>{step.num}</span>
                     <h4>{step.title}</h4>
                     <p>{step.desc}</p>
                   </div>

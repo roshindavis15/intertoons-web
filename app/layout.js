@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getHeaderData } from "@/lib/airtable";
+import StyledJsxRegistry from "@/lib/registry";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -20,9 +21,11 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en" className={inter.variable}>
       <body>
-        <Header navItems={navItems} />
-        <main>{children}</main>
-        <Footer />
+        <StyledJsxRegistry>
+          <Header navItems={navItems} />
+          <main>{children}</main>
+          <Footer />
+        </StyledJsxRegistry>
       </body>
     </html>
   );
