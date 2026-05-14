@@ -12,7 +12,7 @@ export async function generateMetadata({ params }) {
   const service = await getServiceBySlug(slug);
   
   if (!service) return { title: "Service Not Found" };
-
+  
   return {
     title: service['SEO Title'] || `${service.title} | Intertoons`,
     description: service['SEO Description'] || service['short description'] || service['full description'],
