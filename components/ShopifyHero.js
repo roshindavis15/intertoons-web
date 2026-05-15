@@ -34,7 +34,15 @@ const ShopifyHero = ({ data = {}, serviceTitle = "Shopify Developers" }) => {
   const icons = [<FaCheckCircle />, <FaStore />, <FaClock />, <FaTools />];
 
   return (
-    <section className={styles['shopify-hero']}>
+    <section 
+      className={styles['shopify-hero']}
+      style={{ 
+        backgroundImage: `url(${heroImageUrl})`,
+        backgroundSize: 'contain',
+        backgroundPosition: 'right top',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
       <div className={styles['sh-container']}>
         {/* Left Content */}
         <div className={styles['sh-hero-content']}>
@@ -62,7 +70,6 @@ const ShopifyHero = ({ data = {}, serviceTitle = "Shopify Developers" }) => {
 
           <div className={styles['sh-trust-badges']}>
             {trustPoints.map((point, index) => {
-              // Split point into two lines if it has spaces and is long
               const parts = point.split(' ');
               const mid = Math.ceil(parts.length / 2);
               const line1 = parts.slice(0, mid).join(' ');
@@ -79,22 +86,6 @@ const ShopifyHero = ({ data = {}, serviceTitle = "Shopify Developers" }) => {
                 </div>
               );
             })}
-          </div>
-        </div>
-
-        {/* Right Visual */}
-        <div className={styles['sh-hero-visual']}>
-          <div className={styles['sh-mockup-wrapper']}>
-            <Image
-              key="shopify-mockup-v2"
-              src={heroImageUrl}
-              alt={serviceTitle}
-              width={1200}
-              height={900}
-              style={{ width: '100%', height: 'auto' }}
-              className={styles['sh-mockup-image']}
-              priority
-            />
           </div>
         </div>
       </div>

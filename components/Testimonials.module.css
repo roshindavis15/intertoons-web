@@ -1,7 +1,6 @@
-/* White page background, the blue box floats inside */
 .testimonials-outer {
   background: #ffffff;
-  padding: 0.75rem 0 1rem 0; /* Reduced bottom gap */
+  padding: 1.5rem 0 4rem 0;
   font-family: 'Inter', sans-serif;
 }
 
