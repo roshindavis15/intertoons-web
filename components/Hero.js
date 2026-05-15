@@ -53,11 +53,19 @@ export default function Hero({ data = {} }) {
   };
 
   return (
-    <section className={styles['hero']}>
+    <section 
+      className={styles['hero']}
+      style={{ 
+        backgroundImage: `url(${heroImageUrl})`,
+        backgroundSize: 'contain',
+        backgroundPosition: 'right top', /* Moved to top as requested */
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
       <div className={`${styles['container']} ${styles['hero-content']}`}>
         <div className={styles['hero-text']}>
           <div className={styles['badge']}>{subtitle}</div>
-          <h1>{highlightWords(title)}</h1>
+          <h1 className={styles['hero-title']}>{highlightWords(title)}</h1>
           <p className={styles['hero-description']}>{description}</p>
           
           <div className={styles['hero-btns']}>
@@ -71,7 +79,6 @@ export default function Hero({ data = {} }) {
           
           <div className={styles['trust-indicator']}>
             <div className={styles['avatars']}>
-              {/* Using high-quality placeholder faces for the trust indicator */}
               <div className={styles['avatar-img']}>
                 <Image src="https://i.pravatar.cc/100?img=1" alt="Client" width={44} height={44} />
               </div>
@@ -87,17 +94,6 @@ export default function Hero({ data = {} }) {
             </div>
             <div className={styles['trust-text']}>Trusted by 170+ businesses worldwide</div>
           </div>
-        </div>
-        
-        <div className={styles['hero-visual']}>
-          <Image 
-            src={heroImageUrl} 
-            alt="Intelligent Digital Solutions" 
-            width={580} 
-            height={464}
-            priority
-            style={{ objectFit: 'contain', width: '100%', height: 'auto' }}
-          />
         </div>
       </div>
     </section>
