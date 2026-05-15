@@ -1,18 +1,19 @@
 .cta {
   background: #ffffff;
-  padding: 1rem 2rem 4rem 2rem;
+  padding: 1rem 0 4rem 0; /* Reduced top gap */
   font-family: 'Inter', sans-serif;
 }
 
 .container {
   max-width: 1400px;
   margin: 0 auto;
+  padding: 0 1rem; /* Matched Achievements tighter feel */
 }
 
 .cta-banner {
-  background: #3b82f6;
-  border-radius: 20px;
-  max-width: 1150px;
+  background: #0056D2; /* Unified brand blue */
+  border-radius: 12px; /* Standardized radius */
+  width: 100%; /* Fill container like Testimonials */
   margin: 0 auto;
   padding: 2rem 4rem;
   display: flex;
@@ -61,7 +62,6 @@
   font-weight: 800;
   margin: 0 0 0.25rem 0;
   line-height: 1.2;
-  white-space: nowrap;
 }
 
 .cta-text p {

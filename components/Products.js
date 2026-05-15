@@ -35,10 +35,12 @@ export default function Products({ data = [] }) {
               </div>
               <div className={styles['product-content']}>
                 <h3 className={styles['product-title']}>{product.title}</h3>
-                <p className={styles['product-description']}>{product.desc}</p>
-                <div className={styles['product-action']}>
-                  <div className={styles['arrow-circle']}>
-                    <FaArrowRight className={styles['arrow-icon']} />
+                <div className={styles['product-info-row']}>
+                  <p className={styles['product-description']}>{product.desc}</p>
+                  <div className={styles['product-action']}>
+                    <div className={styles['arrow-circle']}>
+                      <FaArrowRight className={styles['arrow-icon']} />
+                    </div>
                   </div>
                 </div>
               </div>

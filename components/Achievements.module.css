@@ -10,9 +10,9 @@
 }
 .dual-card-wrapper {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 1rem; /* Reduced from 1.25rem */
-  width: 100%; /* Align with the container width */
+  grid-template-columns: 1fr 1fr; /* Equal columns for perfect center alignment */
+  gap: 1rem;
+  width: 100%;
 }
 .content-card {
   background: #f0f5ff;
