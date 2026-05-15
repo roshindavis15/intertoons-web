@@ -134,6 +134,13 @@
   .tech-img-wrapper {
     height: 40px;
   }
+  .tech-label-wrapper {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .line {
+    flex: 0 1 40px;
+  }
 }
 @media (max-width: 480px) {
   .tech-label {
@@ -145,5 +152,8 @@
   }
   .tech-img-wrapper {
     height: 32px;
+  }
+  .line {
+    display: none;
   }
 }

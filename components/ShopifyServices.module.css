@@ -92,16 +92,34 @@
 
 @media (max-width: 768px) {
   .shopify-services {
-    padding: 1.5rem 0 1.5rem;
+    padding: 3rem 0;
+  }
+  .ss-section-header {
+    margin-bottom: 2.5rem;
+  }
+  .ss-services-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
   }
   .ss-service-card {
-    flex: 0 0 calc(100% - 1rem);
-    max-width: 450px;
+    width: 100%;
+    max-width: 400px;
+    flex: none;
+    min-height: auto;
+    padding: 2rem 1.5rem;
+  }
+  .ss-service-card h3 {
+    min-height: auto;
   }
 }
 
 @media (max-width: 480px) {
   .ss-section-header h2 {
     font-size: 1.75rem;
+  }
+  .ss-container {
+    padding: 0 1.5rem;
   }
 }
