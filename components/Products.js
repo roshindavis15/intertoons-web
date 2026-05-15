@@ -20,9 +20,11 @@ export default function Products({ data = [] }) {
     <section className={styles['products-section']}>
       <div className={styles['container']}>
         <div className={styles['products-header']}>
-          <div className={styles['header-line']}></div>
-          <h2 className={styles['products-subtitle']}>OUR PRODUCTS</h2>
-          <div className={styles['header-line']}></div>
+          <div className={styles['subtitle-wrapper']}>
+            <span className={`${styles['line']} ${styles['line-first']}`}></span>
+            <h2 className={styles['products-subtitle']}>OUR PRODUCTS</h2>
+            <span className={`${styles['line']} ${styles['line-last']}`}></span>
+          </div>
         </div>
         
         <div className={styles['products-grid']}>

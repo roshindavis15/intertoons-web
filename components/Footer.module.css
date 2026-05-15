@@ -65,7 +65,21 @@
 .contact-info li {
   display: flex;
   align-items: flex-start;
-  gap: 0.5rem;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+.icon {
+  width: 20px;
+  flex-shrink: 0;
+  display: inline-block;
+  text-align: center;
+}
+.company-name {
+  font-weight: 700;
+  color: #0056D2 !important; /* Direct brand blue */
+  margin-bottom: 0.5rem;
+  display: block;
 }
 .footer-bottom {
   padding-top: 2rem;

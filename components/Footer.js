@@ -65,10 +65,10 @@ export default function Footer() {
           <div className={styles['footer-links']}>
             <h4>Contact Us</h4>
             <ul className={styles['contact-info']}>
-              <li>📞 +91 98765 43210</li>
-              <li>✉️ hello@intertoons.com</li>
-              <li>🌐 www.intertoons.com</li>
-              <li>📍 Gurugram, India</li>
+              <li className={styles['company-name']}>Intertoons Internet Services Pvt.Ltd.</li>
+              <li><span className={styles['icon']}>📍</span> <span>First Floor, Sanjo Square, Ashariparampu Road, Edapally, Kochi, Kerala, INDIA 682024</span></li>
+              <li><span className={styles['icon']}>📞</span> <span>+91 79078 06606</span></li>
+              <li><span className={styles['icon']}>✉️</span> <span>support@intertoons.com</span></li>
             </ul>
           </div>
         </div>
