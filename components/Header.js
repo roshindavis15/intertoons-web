@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 import styles from './Header.module.css';
 
 export default function Header({ navItems = [] }) {
@@ -28,14 +29,14 @@ export default function Header({ navItems = [] }) {
         {/* Logo */}
         <div className={styles['logo']}>
           <Link href="/" className={styles['logo-link']}>
-            <div className={styles['logo-it']}>
-              <span className={styles['i']}>i</span>
-              <span className={styles['t']}>T</span>
-            </div>
-            <div className={styles['logo-text']}>
-              <span className={styles['brand']}>INTERTOONS</span>
-              <span className={styles['tagline']}>IMAGINATION MEETS INNOVATION</span>
-            </div>
+            <Image
+              src="/images/intertoonslogo.png"
+              alt="Intertoons Logo"
+              width={180}
+              height={45}
+              className={styles['header-logo-img']}
+              priority
+            />
           </Link>
         </div>
 
@@ -45,15 +46,15 @@ export default function Header({ navItems = [] }) {
             {navItems.map((item, i) => {
               const hasChildren = item.children && item.children.length > 0;
               return (
-                <li 
-                  key={i} 
+                <li
+                  key={i}
                   className={`${pathname === item.slug ? styles['active'] : ''} ${hasChildren ? styles['has-dropdown'] : ''}`}
                 >
                   <Link href={item.slug}>
                     {item.title}
                     {hasChildren && <span className={styles['dropdown-arrow']}>▾</span>}
                   </Link>
-                  
+
                   {hasChildren && (
                     <ul className={styles['dropdown-menu']}>
                       {item.children.map((child, j) => (

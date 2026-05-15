@@ -27,48 +27,15 @@
 .logo-link {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
   text-decoration: none !important;
-  white-space: nowrap;
   cursor: pointer;
   z-index: 10;
 }
 
-.logo-it {
-  color: #003399;
-  font-weight: 900;
-  line-height: 1;
-  display: flex;
-  align-items: baseline;
-  flex-shrink: 0;
-}
-
-.i { font-size: 1.5rem; }
-.t { font-size: 2.2rem; margin-left: -2px; }
-
-.logo-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  line-height: 1.1;
-}
-
-.brand {
-  font-weight: 900;
-  font-size: 1.45rem;
-  letter-spacing: -0.01em;
-  color: #0c1a3d;
-  margin: 0;
-  padding: 0;
-}
-
-.tagline {
-  font-size: 0.52rem;
-  color: #0c1a3d;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  margin-top: 1px;
-  padding: 0;
+.header-logo-img {
+  height: 40px; /* Standardized height */
+  width: auto;
+  display: block;
 }
 
 .nav ul {
@@ -304,21 +271,16 @@
   .header {
     padding: 0.75rem 0;
   }
-  .brand {
-    font-size: 1.25rem;
+  .header-logo-img {
+    height: 32px;
   }
-  .logo-it .i { font-size: 1.3rem; }
-  .logo-it .t { font-size: 1.8rem; }
 }
 
 @media (max-width: 480px) {
   .header-content {
     padding: 0 1rem;
   }
-  .brand {
-    font-size: 1.1rem;
-  }
-  .tagline {
-    font-size: 0.45rem;
+  .header-logo-img {
+    height: 28px;
   }
 }

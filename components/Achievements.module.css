@@ -162,7 +162,11 @@
     max-width: 100%;
     min-width: 0;
   }
-  .line {
-    display: none;
+  .award-icon-wrapper {
+    margin-bottom: 0.5rem;
+    height: 60px;
+  }
+  .award-label {
+    margin-top: 0;
   }
 }

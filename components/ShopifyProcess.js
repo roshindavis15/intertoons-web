@@ -87,7 +87,7 @@ const ShopifyProcess = ({ whyChooseList = "", processSteps = "", serviceTitle = 
             
             <div className={styles['sd-shopify-partner-badge']}>
               <div className={styles['sd-partner-logo']}>
-                <Image src="/images/shopify-icon.png" alt="Shopify Partner" width={40} height={40} />
+                <Image src="/images/shopify-partners-icon.png" alt="Official Shopify Partner" width={150} height={150} />
               </div>
               <div className={styles['sd-partner-text']}>
                 <strong>Official Shopify Partner</strong>
@@ -98,7 +98,12 @@ const ShopifyProcess = ({ whyChooseList = "", processSteps = "", serviceTitle = 
 
           {/* Right: Process */}
           <div className={styles['sd-process-container']}>
-            <h3 className={styles['sd-process-title']}>Our {serviceTitle} Process</h3>
+            <h3 
+              className={styles['sd-process-title']}
+              dangerouslySetInnerHTML={{ 
+                __html: `Our ${serviceTitle} Process`.replace('Shopify Developers', 'Shopify Development').replace('Shopify', '<span>Shopify</span>') 
+              }}
+            />
             <div className={styles['sd-steps-wrapper']}>
               {steps.map((step, index) => (
                 <div key={index} className={styles['sd-step-item']}>

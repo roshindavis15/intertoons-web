@@ -116,7 +116,7 @@
 
 @media (max-width: 640px) {
   .cta {
-    padding: 1rem;
+    padding: 2rem 0; /* Standardized with other sections */
   }
   .cta-banner {
     padding: 2.5rem 1.5rem;

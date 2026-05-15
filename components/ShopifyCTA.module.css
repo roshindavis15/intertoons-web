@@ -1,18 +1,19 @@
 .shopify-cta-section {
   background: #ffffff;
-  padding: 2rem 2rem 5rem 2rem;
+  padding: 2rem 0 5rem 0; /* Removed horizontal padding to match Testimonials */
   font-family: 'Inter', sans-serif;
 }
 
 .sc-container {
   max-width: 1400px;
   margin: 0 auto;
+  padding: 0 1rem; /* Matched Testimonials padding */
 }
 
 .shopify-cta-banner {
   background: #0056D2;
   border-radius: 12px;
-  max-width: 1200px;
+  width: 100%; /* Fill container like Testimonials */
   margin: 0 auto;
   padding: 1.2rem 3rem;
   display: flex;
@@ -128,7 +129,7 @@
 
 @media (max-width: 640px) {
   .shopify-cta-section {
-    padding: 1rem;
+    padding: 0.5rem 1rem 3rem 1rem; /* Reduced top gap */
   }
   .shopify-cta-banner {
     padding: 2.5rem 1.5rem;

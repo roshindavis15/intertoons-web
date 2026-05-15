@@ -17,17 +17,13 @@
 .footer-brand .logo {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
 }
-.logo-it {
-  background: var(--primary);
-  color: white;
-  font-weight: 800;
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
+
+.footer-logo-img {
+  height: 45px;
+  width: auto;
+  display: block;
 }
-.brand { font-weight: 800; font-size: 1.1rem; }
-.tagline { font-size: 0.5rem; display: block; }
 .footer-desc {
   color: var(--text-secondary);
   font-size: 0.9rem;
@@ -39,16 +35,25 @@
   gap: 0.75rem;
 }
 .social-icon {
-  width: 32px;
-  height: 32px;
-  background: var(--bg-soft);
-  border: 1px solid var(--border);
+  width: 36px;
+  height: 36px;
+  background: #0056D2; /* Solid brand blue */
+  border: 1px solid #0056D2;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.8rem;
-  color: var(--text-secondary);
+  font-size: 1rem;
+  color: #ffffff;
+  transition: all 0.3s ease;
+  text-decoration: none !important;
+}
+.social-icon:hover {
+  background: #ffffff;
+  color: #0056D2 !important;
+  transform: translateY(-3px);
+  border-color: #0056D2;
+  box-shadow: 0 5px 15px rgba(0, 86, 210, 0.2);
 }
 
 /* Fixed Impure Selectors */

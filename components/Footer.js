@@ -1,6 +1,8 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
+import { FaFacebookF, FaLinkedinIn, FaInstagram, FaXTwitter } from 'react-icons/fa6';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -10,24 +12,33 @@ export default function Footer() {
         <div className={styles['footer-grid']}>
           <div className={styles['footer-brand']}>
             <div className={`${styles['logo']} mb-4`}>
-              <span className={styles['logo-it']}>IT</span>
-              <div className={styles['logo-text']}>
-                <span className={styles['brand']}>INTERTOONS</span>
-                <span className={styles['tagline']}>IMAGINATION MEETS INNOVATION</span>
-              </div>
+              <Image
+                src="/images/intertoonslogo.png"
+                alt="Intertoons Logo"
+                width={180}
+                height={45}
+                className={styles['footer-logo-img']}
+              />
             </div>
             <p className={styles['footer-desc']}>
               We help businesses grow with AI, automation and digital solutions that create real impact.
             </p>
             <div className={styles['social-links']}>
-              {/* Social icons placeholders */}
-              <div className={styles['social-icon']}>f</div>
-              <div className={styles['social-icon']}>in</div>
-              <div className={styles['social-icon']}>ig</div>
-              <div className={styles['social-icon']}>yt</div>
+              <Link href="https://www.facebook.com/intertoons" target="_blank" className={styles['social-icon']}>
+                <FaFacebookF />
+              </Link>
+              <Link href="https://in.linkedin.com/company/intertoons" target="_blank" className={styles['social-icon']}>
+                <FaLinkedinIn />
+              </Link>
+              <Link href="https://www.instagram.com/intertoon.s" target="_blank" className={styles['social-icon']}>
+                <FaInstagram />
+              </Link>
+              <Link href="https://x.com/intertoons" target="_blank" className={styles['social-icon']}>
+                <FaXTwitter />
+              </Link>
             </div>
           </div>
-          
+
           <div className={styles['footer-links']}>
             <h4>Quick Links</h4>
             <ul>
@@ -40,7 +51,7 @@ export default function Footer() {
               <li><Link href="/blog">Blog</Link></li>
             </ul>
           </div>
-          
+
           <div className={styles['footer-links']}>
             <h4>Our Services</h4>
             <ul>
@@ -51,7 +62,7 @@ export default function Footer() {
               <li>Mobile App Development</li>
             </ul>
           </div>
-          
+
           <div className={styles['footer-links']}>
             <h4>Our Products</h4>
             <ul>
@@ -61,7 +72,7 @@ export default function Footer() {
               <li>AI Chatbots</li>
             </ul>
           </div>
-          
+
           <div className={styles['footer-links']}>
             <h4>Contact Us</h4>
             <ul className={styles['contact-info']}>
@@ -72,7 +83,7 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        
+
         <div className={styles['footer-bottom']}>
           <p>&copy; {new Date().getFullYear()} Intertoons. All Rights Reserved.</p>
           <div className={styles['footer-legal']}>

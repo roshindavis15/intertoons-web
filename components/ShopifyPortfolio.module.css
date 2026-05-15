@@ -111,7 +111,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 1.5rem;
-  margin-bottom: 3.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .sp-project-card {
@@ -219,7 +219,10 @@
   
   .sp-stat-item {
     flex: 0 0 100%;
-    justify-content: flex-start;
+    flex-direction: column; /* Stack icon top, text below */
+    justify-content: center;
+    text-align: center;
+    gap: 1rem;
   }
   
   .sp-stat-item::after {

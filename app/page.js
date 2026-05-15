@@ -6,6 +6,7 @@ import Products from "@/components/Products";
 import Testimonials from "@/components/Testimonials";
 import CTA from "@/components/CTA";
 import { 
+  getHomeData,
   getHeroData, 
   getServicesData, 
   getProductsData, 
@@ -19,6 +20,7 @@ export const revalidate = 0;
 
 export default function Home() {
   // Fetch data on the server
+  const homeDataPromise = getHomeData();
   const heroDataPromise = getHeroData();
   const servicesDataPromise = getServicesData();
   const productsDataPromise = getProductsData();
@@ -29,6 +31,7 @@ export default function Home() {
 
   return (
     <HomeContent 
+      homeDataPromise={homeDataPromise}
       heroDataPromise={heroDataPromise}
       servicesDataPromise={servicesDataPromise}
       productsDataPromise={productsDataPromise}
@@ -42,6 +45,7 @@ export default function Home() {
 
 // Separate component to handle the async data (using Suspense or just awaiting)
 async function HomeContent({ 
+  homeDataPromise,
   heroDataPromise, 
   servicesDataPromise, 
   productsDataPromise, 
@@ -50,6 +54,7 @@ async function HomeContent({
   achievementsDataPromise,
   awardsDataPromise
 }) {
+  const homeData = await homeDataPromise;
   const heroData = await heroDataPromise;
   const servicesData = await servicesDataPromise;
   const productsData = await productsDataPromise;
@@ -58,8 +63,16 @@ async function HomeContent({
   const achievementsData = await achievementsDataPromise;
   const awardsData = await awardsDataPromise;
 
+  const schemaMarkup = homeData['shema markup'] || homeData['Schema Markup'] || homeData['schema markup'];
+
   return (
     <>
+      {schemaMarkup && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: schemaMarkup }}
+        />
+      )}
       <Hero data={heroData} />
       <TechStack data={technologiesData} />
       <Services data={servicesData} />

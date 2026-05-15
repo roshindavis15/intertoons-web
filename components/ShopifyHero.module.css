@@ -181,6 +181,10 @@
     min-height: auto;
     padding: 2.5rem 0;
   }
+  .shopify-hero::before,
+  .shopify-hero::after {
+    display: none;
+  }
   .sh-container {
     flex-direction: column;
     text-align: center;
@@ -236,19 +240,24 @@
   }
   
   .sh-trust-badges {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 1rem;
-    overflow-x: auto;
-    width: 100%;
-    justify-content: flex-start;
-    padding: 0.5rem 0;
-    scrollbar-width: none;
+    display: grid;
+    grid-template-columns: repeat(2, auto); /* Use auto for tighter grouping */
+    gap: 1.25rem 2rem; /* Increased horizontal gap for better separation */
+    width: fit-content; /* Only take as much space as needed */
+    margin: 1.5rem auto; /* Center the entire grid block */
+    justify-content: center;
+    padding: 0;
+    overflow-x: visible;
   }
-  .sh-trust-badges::-webkit-scrollbar { display: none; }
-  .sh-badge-item::after { display: none; }
-  .sh-badge-text { font-size: 0.72rem; line-height: 1.2; }
-  .sh-badge-icon { width: 20px; height: 20px; font-size: 0.8rem; }
+  .sh-badge-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Items themselves left-aligned for structure */
+    text-align: left;
+    gap: 0.75rem;
+  }
+  .sh-badge-text { font-size: 0.85rem; line-height: 1.2; }
+  .sh-badge-icon { width: 24px; height: 24px; font-size: 0.95rem; }
 }
 
 @media (max-width: 480px) {
@@ -265,8 +274,10 @@
   }
 
   .sh-trust-badges {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    grid-template-columns: repeat(2, auto);
+    gap: 1.25rem 2rem;
+    width: fit-content;
+    margin: 1.5rem auto;
   }
   
   .sh-hero-visual {

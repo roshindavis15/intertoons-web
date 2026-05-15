@@ -65,7 +65,7 @@ export default async function ServicePage({ params }) {
             serviceTitle={service.title}
           />
           {service.testimonials && service.testimonials.length > 0 && (
-            <div style={{ background: '#ffffff', padding: '2rem 0' }}>
+            <div style={{ background: '#ffffff' }}>
               <Testimonials data={service.testimonials} />
             </div>
           )}
