@@ -16,10 +16,24 @@
   margin-bottom: 2rem;
 }
 .header-line {
-  height: 1px;
-  width: 60px;
-  background: linear-gradient(90deg, transparent, #0056D2, transparent);
+  height: 1.5px;
+  background: #000000;
+  flex: 0 1 80px;
+  opacity: 0.1;
+  position: relative;
 }
+.header-line::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #000000;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.line-first::after { right: -2px; }
+.line-last::after { left: -2px; }
 .products-subtitle {
   font-size: 0.9rem;
   font-weight: 800;

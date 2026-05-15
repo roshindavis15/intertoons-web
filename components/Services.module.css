@@ -24,7 +24,7 @@
 }
 .line {
   height: 1.5px;
-  background: #0056D2; /* Use brand blue for lines too */
+  background: #000000;
   flex: 0 1 80px;
   opacity: 0.1;
   position: relative;
@@ -34,7 +34,7 @@
   position: absolute;
   width: 4px;
   height: 4px;
-  background: #0056D2; /* Use brand blue for dots */
+  background: #000000;
   border-radius: 50%;
   top: 50%;
   transform: translateY(-50%);
