@@ -6,6 +6,11 @@ import styles from './Achievements.module.css';
 export default function Achievements({ achievementsData = [], awardsData = [] }) {
 
   const stats = (achievementsData || [])
+    .sort((a, b) => {
+      const orderA = Number(a['sort order'] || a['Sort Order'] || a['Display Order'] || 0);
+      const orderB = Number(b['sort order'] || b['Sort Order'] || b['Display Order'] || 0);
+      return orderA - orderB;
+    })
     .map(item => {
       const count = item.Count || item.Value || item.count || 0;
       const title = item.Title || item.title || item.Name || item.Label || "";
@@ -18,6 +23,11 @@ export default function Achievements({ achievementsData = [], awardsData = [] })
     });
 
   const awards = (awardsData || [])
+    .sort((a, b) => {
+      const orderA = Number(a['sort order'] || a['Sort Order'] || a['Display Order'] || 0);
+      const orderB = Number(b['sort order'] || b['Sort Order'] || b['Display Order'] || 0);
+      return orderA - orderB;
+    })
     .map(item => ({
       title: item.Title || item.title || item.Name || item.Award || "",
       icon: item.Icon?.[0]?.url || item.icon?.[0]?.url || null
@@ -29,7 +39,11 @@ export default function Achievements({ achievementsData = [], awardsData = [] })
         <div className={styles['dual-card-wrapper']}>
           {/* Achievements Card (Milestones) */}
           <div className={styles['content-card']}>
-            <h4 className={styles['card-subtitle']}>OUR MILESTONES</h4>
+            <div className={styles['subtitle-wrapper']}>
+              <span className={`${styles['line']} ${styles['line-first']}`}></span>
+              <h4 className={styles['card-subtitle']}>OUR MILESTONES</h4>
+              <span className={`${styles['line']} ${styles['line-last']}`}></span>
+            </div>
             <div className={`${styles['card-grid']} ${styles['achievements-grid']}`}>
               {stats.map((stat, i) => (
                 <div key={i} className={styles['grid-item']}>
@@ -49,7 +63,11 @@ export default function Achievements({ achievementsData = [], awardsData = [] })
 
           {/* Awards Card */}
           <div className={styles['content-card']}>
-            <h4 className={styles['card-subtitle']}>AWARDS & RECOGNITIONS</h4>
+            <div className={styles['subtitle-wrapper']}>
+              <span className={`${styles['line']} ${styles['line-first']}`}></span>
+              <h4 className={styles['card-subtitle']}>AWARDS & RECOGNITIONS</h4>
+              <span className={`${styles['line']} ${styles['line-last']}`}></span>
+            </div>
             <div className={`${styles['card-grid']} ${styles['awards-grid']}`}>
               {awards.map((award, i) => (
                 <div key={i} className={`${styles['grid-item']} ${styles['award-item']}`}>

@@ -1,5 +1,5 @@
 .services-section {
-  padding: 1rem 0 2.5rem 0;
+  padding: 0.75rem 0 0.75rem 0; /* Standardized to half of 1.5rem */
   background: #ffffff;
   font-family: 'Inter', sans-serif;
 }
@@ -10,16 +10,45 @@
 }
 .services-header {
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+.subtitle-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+.line {
+  height: 1.5px;
+  background: #0056D2; /* Use brand blue for lines too */
+  flex: 0 1 80px;
+  opacity: 0.1;
+  position: relative;
+}
+.line::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #0056D2; /* Use brand blue for dots */
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.line-first::after { right: -2px; }
+.line-last::after { left: -2px; }
+
 .services-badge {
-  color: #0056D2;
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 700; /* Back to original weight */
+  color: #0056D2; /* Back to original brand blue */
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  display: block;
-  margin-bottom: 0.75rem;
+  white-space: nowrap;
 }
 .services-title {
   font-size: 2.1rem;
@@ -32,7 +61,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 1.25rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem; /* Equal gap above button */
 }
 .service-card-link {
   text-decoration: none !important;
@@ -114,7 +143,7 @@
 .view-all-btn {
   background-color: #0056D2 !important;
   color: #ffffff !important;
-  padding: 12px 35px !important;
+  padding: 8px 35px !important;
   border-radius: 8px !important;
   font-weight: 700 !important;
   font-size: 1rem !important;
@@ -193,5 +222,8 @@
   .service-description {
     font-size: 0.82rem;
     margin-bottom: 0.5rem;
+  }
+  .line {
+    display: none;
   }
 }
