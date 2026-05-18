@@ -9,6 +9,9 @@ import CTA from "@/components/CTA";
 import { getServiceBySlug } from "@/lib/airtable";
 import { notFound } from "next/navigation";
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const service = await getServiceBySlug(slug);
@@ -23,9 +26,12 @@ export async function generateMetadata({ params }) {
 
 export default async function ServicePage({ params }) {
   const { slug } = await params;
+  console.log("DYNAMIC SERVICE ROUTE: Slug received =", slug);
   const service = await getServiceBySlug(slug);
+  console.log("DYNAMIC SERVICE ROUTE: Service returned =", service ? service.title : null);
 
   if (!service) {
+    console.log("DYNAMIC SERVICE ROUTE: Service not found! Triggering notFound().");
     notFound();
   }
 

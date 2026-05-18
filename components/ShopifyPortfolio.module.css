@@ -107,32 +107,30 @@
 }
 
 .sp-projects-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.15rem; /* Reduced grid gap */
   margin-bottom: 1.5rem;
 }
 
 .sp-project-card {
-  flex: 0 1 calc(25% - 1.5rem);
-  min-width: 280px;
   background: #ffffff;
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
+  width: 100%;
 }
 
 .sp-project-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
   border-color: rgba(0, 86, 210, 0.1);
 }
 
 .sp-project-image {
   width: 100%;
-  aspect-ratio: 4/3;
+  aspect-ratio: 16/10.5; /* Flatter aspect ratio, significantly reduced card height! */
   background: #f8faff;
   overflow: hidden;
 }
@@ -147,11 +145,11 @@
 }
 
 .sp-project-info {
-  padding: 1.5rem;
+  padding: 1.15rem 1.25rem; /* Reduced text box padding to shrink vertical size */
 }
 
 .sp-project-info h3 {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: #0c1a3d;
   margin-bottom: 0.5rem;

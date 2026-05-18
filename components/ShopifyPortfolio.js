@@ -85,14 +85,11 @@ const ShopifyPortfolio = ({ stats = [], projects = [], serviceTitle = "Shopify" 
   }
 
   const displayProjects = projects && projects.length > 0 
-    ? projects.map(p => {
-        const rawCat = p.categroy || p.category || p.Category || p.Categroy || p.Tags || "";
-        return {
-          title: p.title || p.Title || "Project",
-          category: rawCat ? rawCat.split('|')[0].trim() : serviceTitle,
-          image: p['featured image']?.[0]?.url || p['Featured Image']?.[0]?.url || "/images/portfolio-placeholder.jpg"
-        };
-      })
+    ? projects.map(p => ({
+        title: p.title || p.Title || "Project",
+        category: p.category ? p.category.trim() : (p.Tags ? p.Tags.split('|')[0].trim() : serviceTitle),
+        image: p['featured image']?.[0]?.url || p['Featured Image']?.[0]?.url || "/images/portfolio-placeholder.jpg"
+      }))
     : defaultProjects;
 
   return (

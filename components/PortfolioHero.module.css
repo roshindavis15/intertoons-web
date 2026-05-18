@@ -1,5 +1,5 @@
 .portfolio-hero-section {
-  padding: 80px 0 70px 0; /* Reduced top and bottom padding to bring layout higher */
+  padding: 80px 0 10px 0; /* Compact bottom padding to merge seamlessly with below section */
   position: relative;
   overflow: hidden;
   min-height: 520px; /* Shrunk vertical height for a tighter, compact feel */
@@ -75,7 +75,7 @@
   font-size: 1.18rem;
   color: #4a5568;
   line-height: 1.75;
-  margin: 0 0 2.5rem 0;
+  margin: 0 0 1.25rem 0; /* Reduced layout gap to text section */
   max-width: 580px;
 }
 
@@ -83,20 +83,31 @@
 .milestones-bar {
   display: flex;
   align-items: flex-start;
-  gap: 3.5rem; /* Increased gap to support vertical card styling */
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-  padding-top: 2rem;
+  gap: 3.5rem; /* Space between milestones items */
+  padding-top: 0.5rem; /* Reduced gap from above text section */
   width: 100%;
   max-width: 620px;
 }
 
-/* Milestone Item - Refactored to Vertical Column Grid */
+/* Milestone Item - Vertical column display */
 .milestone-item {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.85rem; /* Gap between icon and text details */
+  gap: 0.85rem; /* Spacing between icon, count, and title label */
   text-align: left;
+  position: relative;
+}
+
+/* Centered border dividers between milestone items */
+.milestone-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: -1.75rem; /* Centered exactly in the 3.5rem gap */
+  top: 15%;
+  height: 70%;
+  width: 1px;
+  background-color: rgba(0, 0, 0, 0.12); /* Dynamic, clean border line between milestones */
 }
 
 .milestone-icon-box {
@@ -158,6 +169,10 @@
     gap: 2.5rem;
   }
   
+  .milestone-item:not(:last-child)::after {
+    right: -1.25rem; /* Centered exactly in the 2.5rem gap */
+  }
+  
   .milestone-count {
     font-size: 1.85rem;
   }
@@ -201,6 +216,10 @@
     gap: 3rem;
   }
 
+  .milestone-item:not(:last-child)::after {
+    right: -1.5rem; /* Centered exactly in the 3rem gap */
+  }
+
   .milestone-item {
     align-items: center;
     text-align: center;
@@ -221,6 +240,10 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 2rem;
+  }
+
+  .milestone-item::after {
+    display: none !important; /* Hide divider lines on mobile wrap */
   }
 
   .milestone-item {
