@@ -1,7 +1,7 @@
 .testimonials-outer {
   background: #ffffff;
   padding: 0.5rem 0 0.75rem 0; /* Reduced top gap */
-  font-family: 'Inter', sans-serif;
+  font-family: inherit;
 }
 
 .container {
@@ -201,12 +201,13 @@
   .testimonials-box {
     padding: 2rem 1rem;
   }
+  .cards-row {
+    grid-auto-columns: 100%; /* Single card fully visible */
+    gap: 0;
+  }
 }
 
 @media (max-width: 640px) {
-  .cards-row {
-    grid-auto-columns: 85%; /* 1 item per view with peek of next */
-  }
   .author-photo-wrap {
     width: 55px;
     height: 55px;

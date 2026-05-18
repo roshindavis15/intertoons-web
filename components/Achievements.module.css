@@ -1,7 +1,7 @@
 .achievements-section {
   padding: 0.75rem 0 1.5rem 0; /* Reduced bottom gap to match standardized rhythm */
   background: #fdfdfd;
-  font-family: 'Inter', sans-serif;
+  font-family: inherit;
 }
 .container {
   max-width: 1400px;

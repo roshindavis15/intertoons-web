@@ -1,7 +1,7 @@
 .services-section {
   padding: 0.75rem 0 0.75rem 0; /* Standardized to half of 1.5rem */
   background: #ffffff;
-  font-family: 'Inter', sans-serif;
+  font-family: inherit;
 }
 .container {
   max-width: 1400px;
@@ -55,6 +55,9 @@
   font-weight: 600;
   color: #0c1a3a;
   margin: 0;
+}
+.highlight {
+  color: #0056D2;
 }
 .services-grid {
   display: flex;
@@ -141,6 +144,8 @@
   text-align: center;
 }
 .view-all-btn {
+  position: relative;
+  overflow: hidden;
   background-color: #0056D2 !important;
   color: #ffffff !important;
   padding: 8px 35px !important;
@@ -152,18 +157,57 @@
   align-items: center !important;
   justify-content: center !important;
   gap: 0.75rem !important;
-  transition: all 0.3s ease !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
   border: none !important;
   cursor: pointer !important;
+  z-index: 1;
 }
+
+.view-all-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  z-index: -1;
+  animation: sheen-sweep 4s infinite ease-in-out;
+}
+
+@keyframes sheen-sweep {
+  0% {
+    left: -100%;
+  }
+  25% {
+    left: 150%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+
 .view-all-btn:hover {
-  background-color: #0044aa !important;
+  background-color: #004cbe !important;
   transform: translateY(-2px) !important;
   box-shadow: 0 6px 20px rgba(0, 86, 210, 0.3) !important;
 }
+
 .btn-arrow {
   font-size: 1.2rem;
   color: #ffffff !important;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  display: inline-block !important;
+}
+
+.view-all-btn:hover .btn-arrow {
+  transform: translateX(4px) !important;
 }
 
 @media (max-width: 1200px) {

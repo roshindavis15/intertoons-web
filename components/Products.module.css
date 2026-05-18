@@ -1,7 +1,7 @@
 .products-section {
   padding: 1.5rem 0 1.5rem 0; /* Reduced bottom gap */
   background: #ffffff;
-  font-family: 'Inter', sans-serif;
+  font-family: inherit;
 }
 .container {
   max-width: 1400px;

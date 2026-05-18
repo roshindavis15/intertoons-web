@@ -1,7 +1,7 @@
 .shopify-cta-section {
   background: #ffffff;
   padding: 2rem 0 5rem 0; /* Removed horizontal padding to match Testimonials */
-  font-family: 'Inter', sans-serif;
+  font-family: inherit;
 }
 
 .sc-container {

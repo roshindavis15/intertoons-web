@@ -3,6 +3,7 @@ import TechStack from "@/components/TechStack";
 import Services from "@/components/Services";
 import Achievements from "@/components/Achievements";
 import Products from "@/components/Products";
+import Team from "@/components/Team";
 import Testimonials from "@/components/Testimonials";
 import CTA from "@/components/CTA";
 import { 
@@ -13,7 +14,8 @@ import {
   getTestimonialsData,
   getTechnologiesData,
   getAchievementsData,
-  getAwardsData
+  getAwardsData,
+  getTeamData
 } from "@/lib/airtable";
 
 export const revalidate = 0;
@@ -28,6 +30,7 @@ export default function Home() {
   const technologiesDataPromise = getTechnologiesData();
   const achievementsDataPromise = getAchievementsData();
   const awardsDataPromise = getAwardsData();
+  const teamDataPromise = getTeamData();
 
   return (
     <HomeContent 
@@ -39,6 +42,7 @@ export default function Home() {
       technologiesDataPromise={technologiesDataPromise}
       achievementsDataPromise={achievementsDataPromise}
       awardsDataPromise={awardsDataPromise}
+      teamDataPromise={teamDataPromise}
     />
   );
 }
@@ -52,7 +56,8 @@ async function HomeContent({
   testimonialsDataPromise,
   technologiesDataPromise,
   achievementsDataPromise,
-  awardsDataPromise
+  awardsDataPromise,
+  teamDataPromise
 }) {
   const homeData = await homeDataPromise;
   const heroData = await heroDataPromise;
@@ -62,6 +67,7 @@ async function HomeContent({
   const technologiesData = await technologiesDataPromise;
   const achievementsData = await achievementsDataPromise;
   const awardsData = await awardsDataPromise;
+  const teamData = await teamDataPromise;
 
   const schemaMarkup = homeData['shema markup'] || homeData['Schema Markup'] || homeData['schema markup'];
 
@@ -81,6 +87,7 @@ async function HomeContent({
         awardsData={awardsData} 
       />
       <Products data={productsData} />
+      <Team data={teamData} />
       <Testimonials data={testimonialsData} />
       <CTA />
     </>

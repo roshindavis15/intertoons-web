@@ -1,0 +1,244 @@
+.team-section {
+  padding: 4rem 0;
+  background: #fdfdfd;
+  font-family: inherit;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.team-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.subtitle-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.line {
+  height: 1.5px;
+  background: #000000;
+  flex: 0 1 80px;
+  opacity: 0.1;
+  position: relative;
+}
+
+.line::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #000000;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.line-first::after { right: -2px; }
+.line-last::after { left: -2px; }
+
+.team-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #0056D2;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.team-title {
+  font-size: 2.1rem;
+  font-weight: 600;
+  color: #0c1a3a;
+  margin: 0;
+}
+
+.highlight {
+  color: #0056D2;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.team-card {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 86, 210, 0.1);
+  border-color: rgba(0, 86, 210, 0.2);
+}
+
+.image-wrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #f0f4f8;
+  position: relative;
+  overflow: hidden;
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f0f4f8 0%, #e1e8f0 100%);
+}
+
+.initials {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0056D2;
+  opacity: 0.5;
+}
+
+.member-info {
+  padding: 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.member-name {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #0c1a3a;
+  margin: 0 0 0.25rem 0;
+}
+
+.member-role {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #0056D2;
+  margin: 0 0 1rem 0;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.social-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f0f4f8;
+  color: #4a5568;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  text-decoration: none !important;
+}
+
+.social-icon:hover {
+  background: #0056D2;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.dots-row {
+  display: none;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 1.5rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: #cbd5e1;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.dot:hover {
+  background: #94a3b8;
+}
+
+.dot-active {
+  background: #0056D2;
+  transform: scale(1.25);
+}
+
+@media (max-width: 1200px) {
+  .team-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .team-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 1rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    gap: 0;
+    margin: 0;
+    padding: 0 0 1rem 0;
+  }
+
+  .team-grid::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+
+  .team-card {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    border-radius: 0; /* Align flat for continuous carousel block look */
+    border: none;
+    box-shadow: none;
+  }
+
+  .dots-row {
+    display: flex;
+  }
+
+  .team-section {
+    padding: 3rem 0;
+  }
+
+  .team-title {
+    font-size: 1.8rem;
+  }
+}

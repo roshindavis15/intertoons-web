@@ -1,7 +1,7 @@
 .cta {
   background: #ffffff;
   padding: 0.5rem 0 4rem 0; /* Further reduced top gap */
-  font-family: 'Inter', sans-serif;
+  font-family: inherit;
 }
 
 .container {

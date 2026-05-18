@@ -32,7 +32,7 @@ export default function Services({ data = [] }) {
             <span className={styles['services-badge']}>WHAT WE DO</span>
             <span className={`${styles['line']} ${styles['line-last']}`}></span>
           </div>
-          <h2 className={styles['services-title']}>Powerful Solutions For Your Business</h2>
+          <h2 className={styles['services-title']}>Powerful <span className={styles['highlight']}>Solutions</span> For Your Business</h2>
         </div>
         
         <div className={styles['services-grid']}>
