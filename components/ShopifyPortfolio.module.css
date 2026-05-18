@@ -1,5 +1,5 @@
 .shopify-portfolio-section {
-  padding-bottom: 4rem;
+  padding-bottom: 1.5rem;
   background: #ffffff;
 }
 
@@ -194,7 +194,7 @@
 
 @media (max-width: 768px) {
   .shopify-portfolio-section {
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
   }
   .sp-stats-bar {
     flex-wrap: wrap;

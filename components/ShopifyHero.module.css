@@ -121,6 +121,57 @@
   font-size: 1.1rem;
 }
 
+.sh-btn-primary {
+  position: relative !important;
+  overflow: hidden !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  z-index: 1;
+}
+
+.sh-btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  z-index: -1;
+  animation: sheen-sweep 4s infinite ease-in-out;
+}
+
+@keyframes sheen-sweep {
+  0% {
+    left: -100%;
+  }
+  25% {
+    left: 150%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+
+.sh-btn-primary:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 16px rgba(0, 86, 210, 0.25) !important;
+}
+
+.sh-btn-primary svg {
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  display: inline-block !important;
+}
+
+.sh-btn-primary:hover svg {
+  transform: translateX(4px) !important;
+}
+
 /* Trust Badges */
 .sh-trust-badges {
   display: flex;

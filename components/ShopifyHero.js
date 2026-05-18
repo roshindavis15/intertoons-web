@@ -60,7 +60,7 @@ const ShopifyHero = ({ data = {}, serviceTitle = "Shopify Developers" }) => {
           <p className={styles['sh-hero-description']}>{description}</p>
 
           <div className={styles['sh-hero-actions']}>
-            <Link href="/contact" className={`btn btn-primary ${styles['sh-btn-hero']}`}>
+            <Link href="/contact" className={`btn btn-primary ${styles['sh-btn-hero']} ${styles['sh-btn-primary']}`}>
               {ctaText} <HiArrowRight />
             </Link>
             <Link href="/portfolio" className={`btn btn-outline ${styles['sh-btn-hero']}`}>
