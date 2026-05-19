@@ -71,23 +71,26 @@ export default function Team({ data = [] }) {
         >
           {data.map((member, index) => (
             <div key={index} className={styles['team-card']}>
-              <div className={styles['image-wrapper']}>
-                {member.image ? (
-                  <div className={styles['avatar-container']}>
-                    <Image 
-                      src={member.image} 
-                      alt={member.name}
-                      fill
-                      style={{ objectFit: 'cover' }}
-                    />
-                  </div>
-                ) : (
-                  <div className={styles['image-placeholder']}>
-                    <span className={styles['initials']}>
-                      {member.name.split(' ').map(n => n[0]).join('')}
-                    </span>
-                  </div>
-                )}
+              <div className={styles['avatar-wrapper']}>
+                <div className={styles['avatar-ring']}>
+                  {member.image ? (
+                    <div className={styles['avatar-inner']}>
+                      <Image 
+                        src={member.image} 
+                        alt={member.name}
+                        fill
+                        sizes="(max-width: 768px) 150px, 170px"
+                        style={{ objectFit: 'cover' }}
+                      />
+                    </div>
+                  ) : (
+                    <div className={`${styles['avatar-inner']} ${styles['avatar-placeholder']}`}>
+                      <span className={styles['initials']}>
+                        {member.name.split(' ').map(n => n[0]).join('')}
+                      </span>
+                    </div>
+                  )}
+                </div>
               </div>
               <div className={styles['member-info']}>
                 <h3 className={styles['member-name']}>{member.name}</h3>

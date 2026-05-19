@@ -100,11 +100,11 @@ export default function Testimonials({ data = [] }) {
                 <div className={styles['card-bottom']}>
                   <div className={styles['author-photo-wrap']}>
                     {t.photo ? (
-                      <Image
+                    <Image
                         src={t.photo}
                         alt={t.name}
-                        width={48}
-                        height={48}
+                        width={80}
+                        height={80}
                         style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                       />
                     ) : (

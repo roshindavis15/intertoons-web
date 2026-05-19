@@ -5,7 +5,18 @@ import Image from 'next/image';
 import { FaFacebookF, FaLinkedinIn, FaInstagram, FaXTwitter } from 'react-icons/fa6';
 import styles from './Footer.module.css';
 
-export default function Footer() {
+export default function Footer({ awardsData = [] }) {
+  const awards = (awardsData || [])
+    .sort((a, b) => {
+      const orderA = Number(a['sort order'] || a['Sort Order'] || a['Display Order'] || 0);
+      const orderB = Number(b['sort order'] || b['Sort Order'] || b['Display Order'] || 0);
+      return orderA - orderB;
+    })
+    .map(item => ({
+      title: item.Title || item.title || item.Name || item.Award || "",
+      icon: item.Icon?.[0]?.url || item.icon?.[0]?.url || null
+    }));
+
   return (
     <footer className={styles['footer']}>
       <div className={styles['container']}>
@@ -37,6 +48,24 @@ export default function Footer() {
                 <FaXTwitter />
               </Link>
             </div>
+
+            {/* Awards & Recognition below social links */}
+            {awards && awards.length > 0 && (
+              <div className={styles['footer-awards-brand-block']}>
+                <h5 className={styles['footer-awards-brand-title']}>Awards & Recognitions</h5>
+                <div className={styles['footer-awards-brand-list']}>
+                  {awards.map((award, idx) => (
+                    <div key={idx} className={styles['footer-award-brand-badge']} title={award.title}>
+                      {award.icon ? (
+                        <img src={award.icon} alt={award.title} className={styles['footer-award-brand-img']} />
+                      ) : (
+                        <span className={styles['footer-award-brand-fallback']}>{award.title}</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           <div className={styles['footer-links']}>

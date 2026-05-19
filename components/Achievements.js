@@ -1,10 +1,8 @@
 'use client';
 
-import Image from 'next/image';
 import styles from './Achievements.module.css';
 
 export default function Achievements({ achievementsData = [], awardsData = [] }) {
-
   const stats = (achievementsData || [])
     .sort((a, b) => {
       const orderA = Number(a['sort order'] || a['Sort Order'] || a['Display Order'] || 0);
@@ -22,67 +20,35 @@ export default function Achievements({ achievementsData = [], awardsData = [] })
       };
     });
 
-  const awards = (awardsData || [])
-    .sort((a, b) => {
-      const orderA = Number(a['sort order'] || a['Sort Order'] || a['Display Order'] || 0);
-      const orderB = Number(b['sort order'] || b['Sort Order'] || b['Display Order'] || 0);
-      return orderA - orderB;
-    })
-    .map(item => ({
-      title: item.Title || item.title || item.Name || item.Award || "",
-      icon: item.Icon?.[0]?.url || item.icon?.[0]?.url || null
-    }));
-
   return (
     <section className={styles['achievements-section']}>
       <div className={styles['container']}>
-        <div className={styles['dual-card-wrapper']}>
-          {/* Achievements Card (Milestones) */}
-          <div className={styles['content-card']}>
-            <div className={styles['subtitle-wrapper']}>
-              <span className={`${styles['line']} ${styles['line-first']}`}></span>
-              <h4 className={styles['card-subtitle']}>OUR MILESTONES</h4>
-              <span className={`${styles['line']} ${styles['line-last']}`}></span>
-            </div>
-            <div className={`${styles['card-grid']} ${styles['achievements-grid']}`}>
-              {stats.map((stat, i) => (
-                <div key={i} className={styles['grid-item']}>
-                  <div className={styles['item-icon']}>
-                    {stat.icon ? (
-                      <img src={stat.icon} alt={stat.label} />
-                    ) : (
-                      <div className={styles['icon-placeholder']} />
-                    )}
-                  </div>
-                  <div className={styles['item-value']}>{stat.value}</div>
-                  <div className={styles['item-label']}>{stat.label}</div>
-                </div>
-              ))}
-            </div>
+        <div className={styles['achievements-header']}>
+          <div className={styles['subtitle-wrapper']}>
+            <span className={`${styles['line']} ${styles['line-first']}`}></span>
+            <span className={styles['achievements-badge']}>OUR MILESTONES</span>
+            <span className={`${styles['line']} ${styles['line-last']}`}></span>
           </div>
+          <h2 className={styles['achievements-title']}>
+            Driving Success Through <span className={styles['highlight']}>Proven Results</span>
+          </h2>
+        </div>
 
-          {/* Awards Card */}
-          <div className={styles['content-card']}>
-            <div className={styles['subtitle-wrapper']}>
-              <span className={`${styles['line']} ${styles['line-first']}`}></span>
-              <h4 className={styles['card-subtitle']}>AWARDS & RECOGNITIONS</h4>
-              <span className={`${styles['line']} ${styles['line-last']}`}></span>
-            </div>
-            <div className={`${styles['card-grid']} ${styles['awards-grid']}`}>
-              {awards.map((award, i) => (
-                <div key={i} className={`${styles['grid-item']} ${styles['award-item']}`}>
-                  <div className={styles['award-icon-wrapper']}>
-                    {award.icon ? (
-                      <img src={award.icon} alt={award.title} />
-                    ) : (
-                      <div className={styles['icon-placeholder']} />
-                    )}
+        <div className={styles['milestones-row']}>
+          {stats.map((stat, i) => (
+            <div key={i} className={styles['milestone-col']}>
+              <div className={styles['milestone-num']}>{stat.value}</div>
+              <div className={styles['milestone-divider']}></div>
+              <div className={styles['milestone-info']}>
+                {stat.icon && (
+                  <div className={styles['milestone-icon-wrap']}>
+                    <img src={stat.icon} alt="" />
                   </div>
-                  <div className={`${styles['item-label']} ${styles['award-label']}`}>{award.title}</div>
-                </div>
-              ))}
+                )}
+                <span className={styles['milestone-lbl']}>{stat.label}</span>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

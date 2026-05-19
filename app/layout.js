@@ -2,7 +2,7 @@ import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { getHeaderData } from "@/lib/airtable";
+import { getHeaderData, getAwardsData } from "@/lib/airtable";
 import StyledJsxRegistry from "@/lib/registry";
 
 const spaceGrotesk = Space_Grotesk({
@@ -18,6 +18,12 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const navItems = await getHeaderData();
+  let awardsData = [];
+  try {
+    awardsData = await getAwardsData();
+  } catch (error) {
+    console.error("Error fetching awards data in layout:", error);
+  }
 
   return (
     <html lang="en" className={spaceGrotesk.variable}>
@@ -25,7 +31,7 @@ export default async function RootLayout({ children }) {
         <StyledJsxRegistry>
           <Header navItems={navItems} />
           <main>{children}</main>
-          <Footer />
+          <Footer awardsData={awardsData} />
         </StyledJsxRegistry>
       </body>
     </html>

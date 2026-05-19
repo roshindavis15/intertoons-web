@@ -1,6 +1,6 @@
 .testimonials-outer {
   background: #fdfdfd; /* Light section background matching other sections */
-  padding: 4rem 0; /* Standardized vertical section padding */
+  padding: 1.5rem 0 4.5rem 0; /* Reduced top padding to minimize gap from Team section */
   font-family: inherit;
   overflow: hidden;
 }
@@ -273,6 +273,22 @@
   }
   .tcard {
     padding: 1.75rem 1.5rem;
+  }
+  .card-bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.75rem;
+  }
+  .author-photo-wrap {
+    width: 64px;
+    height: 64px;
+  }
+  .author-placeholder {
+    font-size: 1.5rem;
+  }
+  .author-info {
+    align-items: center;
   }
 }
 

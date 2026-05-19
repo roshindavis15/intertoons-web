@@ -98,6 +98,56 @@
   display: flex;
   gap: 1rem;
 }
+
+/* Footer Awards & Recognition Column Block */
+.footer-awards-brand-block {
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.footer-awards-brand-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.75rem 0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.footer-awards-brand-list {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.footer-award-brand-badge {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.9;
+}
+
+.footer-award-brand-badge:hover {
+  opacity: 1;
+  transform: scale(1.1) translateY(-2px);
+  filter: drop-shadow(0 4px 8px rgba(0, 86, 210, 0.15));
+}
+
+.footer-award-brand-img {
+  max-height: 100%;
+  max-width: 90px;
+  object-fit: contain;
+}
+
+.footer-award-brand-fallback {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
 @media (max-width: 1024px) {
   .footer-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -117,6 +167,13 @@
     margin-right: auto;
   }
   .social-links {
+    justify-content: center;
+  }
+  .footer-awards-brand-block {
+    text-align: center;
+    margin-top: 1.75rem;
+  }
+  .footer-awards-brand-list {
     justify-content: center;
   }
   .contact-info li {
