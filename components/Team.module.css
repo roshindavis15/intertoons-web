@@ -93,10 +93,19 @@
 
 .image-wrapper {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1.1 / 1; /* Slightly wider/shorter aspect ratio to reduce height */
   background: transparent;
   position: relative;
   overflow: hidden;
+}
+
+.member-image {
+  padding: 12px; /* Balanced padding to prevent touching edges */
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.team-card:hover .member-image {
+  transform: scale(1.05); /* Modern, elegant interactive hover scaling */
 }
 
 .image-placeholder {
@@ -106,6 +115,7 @@
   align-items: center;
   justify-content: center;
   background: #ffffff;
+  padding: 12px;
 }
 
 .initials {
@@ -116,7 +126,7 @@
 }
 
 .member-info {
-  padding: 1.5rem;
+  padding: 1rem 1.25rem; /* Reduced padding to make the card more compact */
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -134,7 +144,7 @@
   font-size: 0.9rem;
   font-weight: 600;
   color: #0056D2;
-  margin: 0 0 1rem 0;
+  margin: 0 0 0.5rem 0; /* Reduced margin below role */
 }
 
 .social-links {

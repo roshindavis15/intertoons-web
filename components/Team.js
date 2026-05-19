@@ -77,7 +77,8 @@ export default function Team({ data = [] }) {
                     src={member.image} 
                     alt={member.name}
                     fill
-                    style={{ objectFit: 'cover' }}
+                    className={styles['member-image']}
+                    style={{ objectFit: 'contain' }}
                   />
                 ) : (
                   <div className={styles['image-placeholder']}>
