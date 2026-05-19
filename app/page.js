@@ -69,7 +69,13 @@ async function HomeContent({
   const awardsData = await awardsDataPromise;
   const teamData = await teamDataPromise;
 
-  const schemaMarkup = homeData['shema markup'] || homeData['Schema Markup'] || homeData['schema markup'];
+  let schemaMarkup = homeData['schema_markup'] || homeData['schema markup'] || homeData['Schema Markup'] || homeData['shema markup'];
+  if (schemaMarkup) {
+    schemaMarkup = schemaMarkup.trim();
+    if (schemaMarkup.startsWith('<script')) {
+      schemaMarkup = schemaMarkup.replace(/^<script[^>]*>/i, '').replace(/<\/script>$/i, '').trim();
+    }
+  }
 
   return (
     <>
