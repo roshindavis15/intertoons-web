@@ -93,40 +93,58 @@
 
 .image-wrapper {
   width: 100%;
-  aspect-ratio: 1.1 / 1; /* Slightly wider/shorter aspect ratio to reduce height */
-  background: transparent;
+  aspect-ratio: 1.8 / 1; /* Shorter banner background */
+  background: #f8fafc; /* Restored elegant light grey banner */
   position: relative;
-  overflow: hidden;
+  overflow: visible; /* Allows the avatar to hang over the bottom edge */
+  border-bottom: 1px solid #eef2f6;
 }
 
-.member-image {
-  padding: 12px; /* Balanced padding to prevent touching edges */
+.avatar-container {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid #ffffff; /* Thick white border cutting the circle in half */
+  background: #ffffff;
+  position: absolute;
+  bottom: -75px; /* Offset by half the height to sit perfectly on the divider */
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 10px 25px rgba(0, 86, 210, 0.08);
+  overflow: hidden; /* Clips the image into a circle */
+  z-index: 2;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.team-card:hover .member-image {
-  transform: scale(1.05); /* Modern, elegant interactive hover scaling */
+.team-card:hover .avatar-container {
+  transform: translateX(-50%) scale(1.05); /* Zoom on hover while centered */
 }
 
 .image-placeholder {
-  width: 100%;
-  height: 100%;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid #ffffff;
+  background: #ffffff;
+  position: absolute;
+  bottom: -75px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 10px 25px rgba(0, 86, 210, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #ffffff;
-  padding: 12px;
 }
 
 .initials {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #0056D2;
   opacity: 0.5;
 }
 
 .member-info {
-  padding: 1rem 1.25rem; /* Reduced padding to make the card more compact */
+  padding: 5.5rem 1.25rem 1.5rem 1.25rem; /* Room for larger overlapping avatar */
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -134,17 +152,17 @@
 }
 
 .member-name {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 800;
   color: #0c1a3a;
   margin: 0 0 0.25rem 0;
 }
 
 .member-role {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: #0056D2;
-  margin: 0 0 0.5rem 0; /* Reduced margin below role */
+  margin: 0 0 0.75rem 0;
 }
 
 .social-links {

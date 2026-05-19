@@ -73,13 +73,14 @@ export default function Team({ data = [] }) {
             <div key={index} className={styles['team-card']}>
               <div className={styles['image-wrapper']}>
                 {member.image ? (
-                  <Image 
-                    src={member.image} 
-                    alt={member.name}
-                    fill
-                    className={styles['member-image']}
-                    style={{ objectFit: 'contain' }}
-                  />
+                  <div className={styles['avatar-container']}>
+                    <Image 
+                      src={member.image} 
+                      alt={member.name}
+                      fill
+                      style={{ objectFit: 'cover' }}
+                    />
+                  </div>
                 ) : (
                   <div className={styles['image-placeholder']}>
                     <span className={styles['initials']}>
