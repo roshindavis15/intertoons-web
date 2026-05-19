@@ -153,3 +153,108 @@ h3 { font-size: 1.5rem; font-weight: 700; }
     transform: translateX(100%);
   }
 }
+
+/* ==========================================================================
+   Responsive Page Containers Setup
+   ========================================================================== */
+
+/* Universal selector targeting all layouts containers to ensure unified structure */
+.container,
+.header-content,
+.hero-content,
+.ss-container,
+.sd-container,
+.sp-container,
+.sh-container,
+.sc-container,
+.ph-container {
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-left: 2rem !important; /* Increased left gap */
+  padding-right: 2rem !important; /* Increased right gap */
+  box-sizing: border-box !important;
+}
+
+/* Below md screens (< 768px) */
+@media (max-width: 767.98px) {
+  .container,
+  .header-content,
+  .hero-content,
+  .ss-container,
+  .sd-container,
+  .sp-container,
+  .sh-container,
+  .sc-container,
+  .ph-container {
+    max-width: 100% !important;
+    padding-left: 1.5rem !important; /* Increased gap on mobile */
+    padding-right: 1.5rem !important;
+  }
+}
+
+/* Below lg screens (>= 768px and < 992px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .container,
+  .header-content,
+  .hero-content,
+  .ss-container,
+  .sd-container,
+  .sp-container,
+  .sh-container,
+  .sc-container,
+  .ph-container {
+    max-width: 720px !important;
+  }
+}
+
+/* Below xl screens (>= 992px and < 1200px) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .container,
+  .header-content,
+  .hero-content,
+  .ss-container,
+  .sd-container,
+  .sp-container,
+  .sh-container,
+  .sc-container,
+  .ph-container {
+    max-width: 960px !important;
+  }
+}
+
+/* Above xl screen (>= 1200px) */
+@media (min-width: 1200px) {
+  .container,
+  .header-content,
+  .hero-content,
+  .ss-container,
+  .sd-container,
+  .sp-container,
+  .sh-container,
+  .sc-container,
+  .ph-container {
+    max-width: 1200px !important; /* 1200px max-width above xl */
+    padding-left: 3rem !important; /* Increased gap above xl */
+    padding-right: 3rem !important;
+  }
+}
+
+/* Above xxl screen (>= 1400px) */
+@media (min-width: 1400px) {
+  .container,
+  .header-content,
+  .hero-content,
+  .ss-container,
+  .sd-container,
+  .sp-container,
+  .sh-container,
+  .sc-container,
+  .ph-container {
+    max-width: 1320px !important; /* Increased max-width above xxl */
+    padding-left: 4rem !important; /* Increased gap above xxl */
+    padding-right: 4rem !important;
+  }
+}

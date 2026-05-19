@@ -266,7 +266,7 @@
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     gap: 1.5rem;
-    margin: 0 -2rem; /* Bleed out to screen edges */
+    margin: 0 -1.5rem; /* Bleed out to screen edges matching mobile container padding */
     width: auto; /* Override desktop width: 100% to let negative margins stretch layout */
   }
 
