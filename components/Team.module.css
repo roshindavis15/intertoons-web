@@ -94,7 +94,7 @@
 .image-wrapper {
   width: 100%;
   aspect-ratio: 1 / 1;
-  background: #f0f4f8;
+  background: transparent;
   position: relative;
   overflow: hidden;
 }
@@ -105,7 +105,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #f0f4f8 0%, #e1e8f0 100%);
+  background: #ffffff;
 }
 
 .initials {

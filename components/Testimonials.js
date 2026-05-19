@@ -63,7 +63,14 @@ export default function Testimonials({ data = [] }) {
     <section className={styles['testimonials-outer']}>
       <div className={styles['container']}>
         <div className={styles['testimonials-box']}>
-          <h2 className={styles['testimonials-title']}>WHAT OUR CLIENTS SAY</h2>
+          <div className={styles['testimonials-header']}>
+            <div className={styles['subtitle-wrapper']}>
+              <span className={`${styles['line']} ${styles['line-first']}`}></span>
+              <span className={styles['testimonials-badge']}>TESTIMONIALS</span>
+              <span className={`${styles['line']} ${styles['line-last']}`}></span>
+            </div>
+            <h2 className={styles['testimonials-title']}>What Our <span className={styles['highlight']}>Clients</span> Say</h2>
+          </div>
 
           <div 
             className={styles['cards-row']} 
@@ -73,7 +80,6 @@ export default function Testimonials({ data = [] }) {
             {testimonials.map((t, i) => (
               <div key={i} className={styles['tcard']}>
                 <div className={styles['card-top']}>
-                  <span className={styles['quote-mark']}>&ldquo;</span>
                   <div className={styles['stars-row']}>
                     {Array.from({ length: 5 }).map((_, s) => (
                       <span 
@@ -84,28 +90,30 @@ export default function Testimonials({ data = [] }) {
                       </span>
                     ))}
                   </div>
+                  <span className={styles['quote-mark']}>&ldquo;</span>
                 </div>
 
                 <div className={styles['card-middle']}>
+                  <p className={styles['tcard-text']}>{t.text}</p>
+                </div>
+
+                <div className={styles['card-bottom']}>
                   <div className={styles['author-photo-wrap']}>
                     {t.photo ? (
                       <Image
                         src={t.photo}
                         alt={t.name}
-                        width={65}
-                        height={65}
+                        width={48}
+                        height={48}
                         style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                       />
                     ) : (
                       <div className={styles['author-placeholder']}>{t.name.charAt(0)}</div>
                     )}
                   </div>
-                  <div className={styles['review-content']}>
-                    <p className={styles['tcard-text']}>{t.text}</p>
-                    <div className={styles['card-bottom']}>
-                      <span className={styles['author-name']}>– {t.name}</span>
-                      <span className={styles['author-profession']}>{t.profession}</span>
-                    </div>
+                  <div className={styles['author-info']}>
+                    <span className={styles['author-name']}>{t.name}</span>
+                    <span className={styles['author-profession']}>{t.profession}</span>
                   </div>
                 </div>
               </div>
